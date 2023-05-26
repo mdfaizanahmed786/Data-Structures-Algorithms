@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 void printPattern1(int n)
 {
@@ -425,6 +425,83 @@ void printPattern22(int n)
     }
 }
 
+void printPattern23(int n)
+{
+    //   alternate 1212 in the rectangle shape
+
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            if ((i + j) % 2 == 0)
+            {
+                cout << "1";
+            }
+            else
+            {
+
+                cout << "2";
+            }
+        }
+        cout << endl;
+    }
+}
+
+void printPattern24(int n)
+{
+    //   alternate 1212 in the rectangle shape
+    for (int i = 1; i <= n; i++)
+    {
+
+        // first spaces
+        for (int j = 1; j <= i - 1; j++)
+        {
+            cout << " ";
+        }
+
+        // next pattern
+        for (int j = i; j <= n; j++)
+        {
+            cout << j;
+        }
+
+        cout << endl;
+    }
+}
+
+
+void printPattern25(int n){
+    // best alphabetical pattern
+      char c='A';
+     for(int i=1;i<=2*n-1; i++){
+    // spaces
+    int cols=(i>n ? i-n : n-i);
+    int spaces=(i>n ? 2*n-i+(2*n-i-1) : 2*i-1);
+    for(int j=1; j<=cols;j++){
+      cout<<" ";
+    }
+    for(int k=1; k<=spaces; k++){
+      char res=c+k-1;
+      cout<<res;
+    }
+    cout<<endl;
+  }
+}
+
+void importantPattern(int n){
+    //  https://youtu.be/tNm_NNSB3_w?t=4541
+    // youtube like is aobe, if not understood, just taking minimum values from all the sides, and then subtracting the nubmer from it.
+
+    for(int i=0; i<2*n-1; i++){
+
+        for(int j=0; j<2*n-1; j++){
+            int top=i, left=j, right=2*n-2-j, down=2*n-2-i;
+            cout<<n-min(min(top, down), min(right, left));
+        }
+        cout<<endl;
+    }
+}
+
 int main()
 {
     // Rectangle Pattern
@@ -513,5 +590,22 @@ int main()
     // butteryfly pattern
     printPattern22(n);
     cout << endl;
+
+    // 1212 pattern
+    printPattern23(n);
+    cout << endl;
+
+    // another number pattern
+    printPattern24(n);
+    cout << endl;
+
+
+    // alphabet diamond pattern
+    printPattern25(n);
+    cout<<endl;
+
+    // important pattern
+    importantPattern(n);
+    cout<<endl;
     return 0;
 }
