@@ -1,0 +1,25 @@
+Union of two sorted arrays (contains duplicate)
+
+Brute: Use set, and insert first array elements and then insert second array elements
+Time complexity for set varies, it is not very much particular
+TC: O(n1logn) +O(mlogn)+ O(n1+m)
+
+ SC: O(n1+m)+O(n1+m)->for array to return the answer
+
+
+
+ Optimal Approach: Use two pointers
+
+ take two pointers, one for each array
+    1. if element at first pointer is less than element at second pointer, then insert first element in the answer array and increment first pointer also check whether the element is already present in the answer array or not using v.back() != arr1[i]
+
+    2. if element at first pointer is greater than element at second pointer, then insert second element in the answer array and increment second pointer also check whether the element is already present in the answer array or not using v.back() != arr2[j]
+
+If any array is left, then insert all the elements of that array in the answer array and be sure to check v.back() != arr1[i] or v.back() != arr2[j]
+
+TC: O(n1+n2)
+SC: O(n1+n2) only for returning the answer array
+
+*/
+
+https://www.codingninjas.com/codestudio/problems/sorted-array_6613259?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
