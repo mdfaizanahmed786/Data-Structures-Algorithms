@@ -32,6 +32,8 @@ Create an answer array as well to compare back element
 TC: O(nlogn)+O(n+m)
 SC: O(n+m) //for result array
 
+https://leetcode.com/problems/intersection-of-two-arrays/description/
+
 */
 
 
