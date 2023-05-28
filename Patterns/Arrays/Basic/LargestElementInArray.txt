@@ -1,0 +1,15 @@
+Find largest element in array:
+
+Brute: Sort the array, and return the index of last element.
+TC: O(nlogn) (merge sort)
+SC: O(1)
+
+Optimal: Traverse the array and keep track of max element. (consider the first element as max and traverse it)
+TC: O(n)
+SC: O(1)
+
+Corner Cases: if element is negative, then max will be -infinity, so we can take max as INT_MIN.
+
+
+Solved Link: https://www.codingninjas.com/codestudio/problems/largest-element-in-the-array-largest-element-in-the-array_5026279?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
+
