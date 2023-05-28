@@ -1,0 +1,40 @@
+Find second largest element in array:
+
+
+Brute:(sort beforehand) find first largest element, now we know second largest will be at arr[n-2] position, start iterating from backward and  to return element, take a variable secondLargest,  if (arr[i]<largest && arr[i]>secondLargest) secondLargest=arr[i] return secondLargest
+
+For smallest: find first smallest element, now we know second smallest will be at arr[1] position, start iterating from forward and  to return element, take a variable secondSmallest,  if (arr[i]>smallest && arr[i]<secondSmallest) secondSmallest=arr[i] return secondSmallest
+
+
+
+TC: O(nlogn) + O(n) = O(nlogn)
+SC: O(1)
+
+
+
+
+
+Better:
+Without sort, then first find largest with optimal, then find second largest and iterate forward and compare both largest and second largest, if (arr[i]>secondLargest && arr[i]<largest) secondLargest=arr[i] return secondLargest
+
+for smalllest, find smallest, then find second smallest and iterate forward and compare both smallest and second smallest, if (arr[i]<secondSmallest && arr[i]>smallest) secondSmallest=arr[i] return secondSmallest.
+
+
+TC: O(n)(first pass, for largest)+O(n)(for second pass, for second largest) = O(n)
+SC: O(1)
+
+
+
+
+Optimal: Taking two variables, largest=arr[0], secondLargest=-1
+1. Do nothing, if the largest number is equivalent
+2. If number is smaller than largest, then take that as second largest element
+
+https://practice.geeksforgeeks.org/problems/find-the-smallest-and-second-smallest-element-in-an-array3226/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+TC: O(n)
+SC: O(1)
+
+
+All the three approaches:
+https://www.codingninjas.com/codestudio/problems/ninja-and-the-second-order-elements_6581960?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
