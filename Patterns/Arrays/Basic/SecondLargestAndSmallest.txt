@@ -38,3 +38,7 @@ SC: O(1)
 
 All the three approaches:
 https://www.codingninjas.com/codestudio/problems/ninja-and-the-second-order-elements_6581960?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
+
+
+
+WORKS FOR DUPLICATE

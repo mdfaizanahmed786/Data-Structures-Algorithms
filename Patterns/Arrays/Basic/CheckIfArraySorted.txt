@@ -1,0 +1,4 @@
+Check sorted array:
+
+O(N), SC: O(1)
+https://www.codingninjas.com/codestudio/problems/ninja-and-the-sorted-check_6581957?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
