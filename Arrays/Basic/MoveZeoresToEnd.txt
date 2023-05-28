@@ -1,0 +1,29 @@
+Move zeroes to end
+
+Brute: Create a temp array, insert all the elements which are not zero, then count these non-zero elements and insert the remaining zeroes at the end.
+TC: O(2n-x) x:number of zeroes, O(N)
+SC: O(n-x) x:number of zeroes O(N) n-x: number of non-zero elements
+
+https://leetcode.com/problems/move-zeroes/description/
+
+Optimal:Use two pointers:
+Case 1: if first pointer element is zero and second pointer element is non-zero, swap them and increment both pointers
+Case 2: if first pointer element is non-zero and second pointer element is non-zero, increment both pointers
+Case 3: if first pointer element is zero and second pointer element is zero, increment second pointer and skip to next iteration using continue
+
+ int i=0, j=1;
+        while(j<nums.size()){
+            if(nums[i]==0 && nums[j]!=0){
+                swap(nums[i], nums[j]);
+            }
+            else if(nums[i]==0 && nums[j]==0){
+                j++;
+                continue;
+            }
+            i++;
+            j++;
+        }
+
+
+TC: O(n)
+SC: O(1)
