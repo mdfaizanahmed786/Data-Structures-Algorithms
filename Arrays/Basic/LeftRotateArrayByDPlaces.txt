@@ -1,0 +1,40 @@
+Left rotate an array by one place:
+Optimal:(direct): Store first value of array in temp variable, then shift all elements to left by one place, then store temp variable in last place of array.
+Time complexity: O(n)
+Auxiliary space: O(1)
+Space Complexity: O(n)(Modifying the array)
+https://www.codingninjas.com/codestudio/problems/left-rotate-an-array-by-one_5026278?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
+
+
+
+Left rotate an array by d places:
+Brute: Just take one temp variable and store the array items from 0 to d-1 in it, then shift all elements to left by d places, then store temp variable in last d places of array.
+https://practice.geeksforgeeks.org/problems/rotate-array-by-n-elements-1587115621/1
+
+
+   vector<int> temp;
+        int k=d%n;
+        for(int i=0; i<k; i++){
+           temp.push_back(nums[i]);
+        }
+       
+        for(int i=k; i<n; i++){
+               nums[i-k]=nums[i];
+             
+        }
+    
+         
+
+        for(int i=n-k; i<n; i++ ){
+            nums[i]=temp[i-(n-k)];
+            
+        }
+
+TC: O(k)+O(n-k)+O(k) = O(n)
+SC: O(k) + O(1) = O(k)
+
+
+
+Optimal: Reverse the array from 0 to d-1, then reverse the array from d to n-1, then reverse the whole array.
+TC: O(d)+O(n-d)+O(n) = O(n)
+SC: O(1) , no extra space required
