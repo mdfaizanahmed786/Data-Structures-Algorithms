@@ -1,0 +1,5 @@
+Brute: Store in a set 
+Optimal: Two pointers, one to iterate and one to store the index of the last unique element
+
+
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
