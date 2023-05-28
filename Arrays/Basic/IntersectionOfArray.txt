@@ -1,0 +1,37 @@
+Intersection of two arrays
+
+Brute: 
+1. Iterate both arrays in nested one, and check if any element is common. O(n^2)
+2. Create a visited array with size of second array containing zero elements
+3. Check whether the element of first array is present in second array, if yes, mark it as visited with value of 1
+
+This result will have occurences:(to remove this occurences, use set)
+ vector<int> ans;
+					 vector<int> visited(arr2.size(), 0);
+	for(int i=0; i<arr1.size(); i++){
+	    for(int j=0; j<arr2.size(); j++){
+			if(arr1[i]==arr2[j] && visited[j]==0){
+				ans.push_back(arr1[i]);
+			   visited[j]=1;
+				 break;
+			}
+		}
+
+	}
+TC: O(n1*n2)
+SC: O(n2)
+
+
+Optimal:Using two pointers
+Create an answer array as well to compare back element
+1. Sort both arrays
+2. Iterate both arrays with two pointers, if element is same, push it to result and increment both pointers and also check the back element of resultant array
+3. If element greater of first array, increment second pointer
+4. If element greater of second array, increment first pointer
+
+TC: O(nlogn)+O(n+m)
+SC: O(n+m) //for result array
+
+*/
+
+
