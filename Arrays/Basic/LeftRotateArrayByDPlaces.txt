@@ -1,3 +1,4 @@
+D=D%N
 Left rotate an array by one place:
 Optimal:(direct): Store first value of array in temp variable, then shift all elements to left by one place, then store temp variable in last place of array.
 Time complexity: O(n)

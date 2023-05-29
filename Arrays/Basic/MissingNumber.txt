@@ -1,0 +1,48 @@
+Find missing number
+
+Brute: Apply linear search and find the missing number
+This below approach will not work if the array contains duplicate elements and if the number present in array is 0
+code: 
+```
+int findMissing(int arr[], int n) 
+{ 
+    int i, j, found; 
+    for (i = 1; i <= n; i++) { 
+        found = 0; 
+        for (j = 0; j < n; j++) { 
+            if (arr[j] == i) { 
+                found = 1; 
+                break; 
+            } 
+        } 
+        if (found == 0) 
+            return i; 
+    } 
+    return -1; 
+}
+```    
+
+TC: O(n^2)
+SC: O(1)
+
+Better: Use hashing
+We can use a hash array of size n+1 with all zeroes to mark the presence of all elements in the array. This approach will work even if the array contains duplicate elements. hash_array[arr[i]]=1 if the element exists.
+if hash_array[i]==0 then i is the missing number
+TC: O(2N)
+SC: O(N) for hashing
+
+Optimal: Use sum or xor
+
+Sum: Find the sum of all elements in the array and subtract it from the sum of first n natural numbers. The result is the missing number.
+Formula: n(n+1)/2
+But this approach will not work if the array contains duplicate elements and will exceed the range of int if the array size is large.
+TC: O(N)
+SC: O(1)
+
+XOR: XOR all the elements in the array and then XOR it with all the elements from 1 to n. The result is the missing number.
+XOR1=xor of all array elements
+XOR2=xor of all elements from 1 to n
+Missing number = XOR1 ^ XOR2
+Reason: 1^1=0, 0^7=7
+TC: O(N)
+SC: O(1)
