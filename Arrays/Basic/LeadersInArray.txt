@@ -1,0 +1,40 @@
+Find leaders in an array
+
+Explanation: This means the element is greater than all the elements to its right side. The rightmost element is always a leader.
+
+Brute:
+Always compare for an element to the right side of it. If it is greater than all the elements to its right side, then it is a leader.
+  vector<int> result;
+        for(int i=0; i<n; i++){
+        bool flag=1;
+            for(int j=i+1; j<n; j++){
+                if(a[i]<a[j]){
+                    flag=0;
+                    break;
+                }
+            }
+            if(flag) result.push_back(a[i]);
+        }
+
+TC: O(n^2)
+SC: O(N)
+
+IT IS ALSO FOR DUPLICATE ELEMENTS
+
+
+Optimal: Start traversing from right side, and keep track of the maximum element. If the current element is greater than the maximum element, then it is a leader.
+
+ int maxi=-1;
+        for(int i=n-1; i>=0; i--){
+            if(a[i]>=maxi){
+               maxi=a[i];
+                result.push_back(a[i]);
+            }
+          
+        }
+        
+        reverse(result.begin(), result.end());
+
+TC: O(n)
+SC: O(N)
+        
