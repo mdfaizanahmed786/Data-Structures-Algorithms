@@ -1,0 +1,15 @@
+Find maximum consecutive ones in an array
+Example: 1 1 0 1 1 1 
+Output: 3
+
+
+
+You can jump directly to optimal solution:
+Optimal: O(n) time and O(1) space
+1. Take two variables, maxCount, count
+2. Iterate over the array
+3. If element is 1, increment count
+4. If element is 0, update maxCount if count > maxCount and reset count to 0
+5. Return maxCount
+
+https://leetcode.com/problems/max-consecutive-ones/description/
