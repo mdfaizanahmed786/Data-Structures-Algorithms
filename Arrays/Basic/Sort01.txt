@@ -1,0 +1,55 @@
+Sort Array of 0s and 1s
+
+ Approach 1
+        using a sorting algorithm like merge sort O(Nlogn)+sc(O(N))
+        
+   Approach 2
+   
+        vector<int> arr2;
+        int count1=0, count0=0;
+        
+        // O(N)
+        for(int i=0; i<n; i++){
+            if(arr[i]==0) count0++;
+            else count1++;
+        }
+        // O(x)
+        for(int i=0; i<count0; i++){
+            arr2.push_back(0);
+        }
+        // O(N-x)
+        for(int i=0; i<count1; i++){
+            arr2.push_back(1);
+        }
+        
+        int idx=0;
+        // O(N)
+        for(int i=0; i<arr2.size(); i++){
+            arr[idx]=arr2[i];
+            idx++;
+        }
+        
+        // TC: O(3N) SC:O(N)
+        
+        
+        
+        Approach 3
+        
+        
+        using pointers
+        O(N) and SC: O(1)
+        int start=0, end=n-1;
+        while(start<=end){
+            if(arr[start]==0){
+                start++;
+            }
+            else if(arr[end]==1){
+               end--;
+            }
+            else{
+                swap(arr[start], arr[end]);
+                start++;
+                end--;
+            }
+        }
+        
