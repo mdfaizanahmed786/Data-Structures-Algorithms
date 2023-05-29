@@ -1,0 +1,84 @@
+Two Sum
+
+
+Brute:
+
+1. Two for loops
+2. Check if the sum of the two numbers is equal to the target
+3. If so, return the indices of the two numbers
+
+ for(int i=0; i<nums.size(); i++){
+// we can optimize it, instead of checking again backwards, we can check from i+1 for j
+            for(int j=0; j<nums.size(); j++){
+                if(i==j) continue;  // this line will get removed
+                if(nums[i]+nums[j]==target){
+                    return {i, j};
+                }
+            }
+        }
+        return {-1,-1};
+
+
+TC: O(n^2)
+SC: O(1)
+
+
+Better: Using Hashmap for it
+
+map<int, int> mp;
+
+
+for(int i=0; i<nums.size(); i++){
+    int difference=target-nums[i];
+    if(mp.find(difference)==mp.end()){
+    //   if the key does not exist
+           mp.insert({nums[i], i});
+    }
+    else{
+       
+      
+        return {i, mp[difference]};
+    }
+}
+
+return {-1, -1};
+TC: O(nlogM) M is the size of map
+SC: O(M) what if the key does not exist at all
+
+
+Optimal: Using two pointers
+1. Sort the array
+2. Use two pointers, one at the start and one at the end
+3. Check if the sum of the two numbers is equal to the target
+4. If so, return the indices of the two numbers
+5. If the sum is greater than the target, move the right pointer to the left
+6. If the sum is less than the target, move the left pointer to the right
+7. To return the indices, store them in vector of pairs
+
+vector<pair<int, int>> ans;  (for this type, hashmap is the best one)
+//         storing elements and indices in pair
+        for(int i=0; i<nums.size(); i++){
+            ans.push_back({nums[i], i});
+        }
+//    sorting this pair vector with respect to the first pair
+        sort(ans.begin(), ans.end());
+        int s=0, e=nums.size()-1;
+        while(s<e){
+            int sum=ans[s].first+ans[e].first;
+            if(sum==target){
+               return {ans[s].second, ans[e].second};
+            }
+            else if (sum>target){
+                e--;
+            }
+            else{
+                s++;
+            }
+        }
+        return {-1,-1};
+
+TC: O(N)+O(Nlogn)=O(Nlogn)
+SC: O(N)
+
+*/
+    

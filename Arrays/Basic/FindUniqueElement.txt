@@ -20,11 +20,30 @@ for(int i=0; i<nums.size(); i++){
                uniqueNumber=nums[i];
         }
 
-Better: Use hashmap or use hash array and take maximum number from it.
+Better: Use hashmap(ordered map, with <long long, int>) or 
+use hash array and take maximum number from it.(but will not work for negative numbers)
 SC: O(n)
+
+
 TC: O(n)
+
+here is the catch, for map, storing elements: O(NlogM) M is the size of map, and N is size of array
+When checking for count in map, the iteration will go O(N/2+1)  +1 is unique number and other are duplicate numbers
+So, TC: O(NlogM) + O(N/2+1) = O(NlogM) + O(N) = O(NlogM)
+
+
+
 Store the number and its frequency in the hashmap
 if frequency is 1, return that number
+
+IMPORTANT:
+UNORDERED MAP CAN GO O(N) IN BEST CASE, BUT IF THE INPUTS ARE CRITICAL AND LARGE, IT CAN GO O(N^2) IN WORST CASE
+ORDERED MAP WILL ALWAYS GO O(N) IN WORST CASE
+
+BUT IN THIS QUESTION, UNORDERED MAP GOES IN O(N)
+
+
+
 
 Optimal: Use XOR
 TC: O(n)
