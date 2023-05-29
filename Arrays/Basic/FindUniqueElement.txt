@@ -1,0 +1,34 @@
+Find Unique number that appears only once and remaining others appears twice
+
+
+Brute: O(n^2) - 2 for loops and check if the number is repeated or not
+SC: O(1)
+Just do linear search: using below implementation:
+for(int i=0; i<nums.size(); i++){
+      bool flag=1;
+         for(int j=0; j<nums.size(); j++){
+             // the number should not be equal to itself
+             if(nums[i]==nums[j] && i!=j){
+                 flag=0;
+                 break;
+                
+                  
+                }
+
+            }
+            if(flag==1)
+               uniqueNumber=nums[i];
+        }
+
+Better: Use hashmap or use hash array and take maximum number from it.
+SC: O(n)
+TC: O(n)
+Store the number and its frequency in the hashmap
+if frequency is 1, return that number
+
+Optimal: Use XOR
+TC: O(n)
+SC: O(1)
+XOR of a number with itself is 0
+
+https://leetcode.com/problems/single-number/description/
