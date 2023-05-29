@@ -1,0 +1,79 @@
+Find Duplicate Number:
+
+4 approaches:
+
+
+ int findDuplicate(vector<int>& nums) {
+        int duplicateNumber=-1;
+
+         Brute Force Approach
+         TC: O(N^2)
+         SC: O(1)
+         for(int i=0; i<nums.size(); i++){
+             for(int j=0; j<nums.size(); j++){
+                 if(i==j) continue;
+                 if(nums[i]==nums[j]){
+                     duplicateNumber=nums[i];
+                     break;
+                 }
+             }
+         }
+
+
+
+         Better approach using hashmap
+         TC: O(nlogm)+O(m) 
+         SC: O(N)
+         map<int, int> mp;
+         for(int i=0; i<nums.size(); i++){
+             mp[nums[i]]++;
+         }
+
+         for(auto it:mp){
+             if(it.second>=2){
+                 duplicateNumber=it.first;
+             }
+         }
+
+
+     
+        Another approach
+        TC: O(nlogn)+O(n)
+        SC: O(1)
+       sort(nums.begin(), nums.end());
+       for(int i=1; i<nums.size(); i++){
+           if(nums[i]==nums[i-1]){
+                    duplicateNumber=nums[i];
+               break;
+               } 
+       }
+
+       1 3 4 2 2 
+       0 1 2 3 4
+
+       Iterating based on nums[nums[i]], if already visited, then it is duplicate (visited means, making it negative)
+       
+       
+        Another approach
+     TC: O(N) SC:O(1)
+     for(int i=0; i<nums.size(); i++){
+          taking absolute value of indices
+    
+       int index=abs(nums[i]);
+        if they are already marked negative, then they are already visited
+       if(nums[index]<0){
+            taking that nums[i] value
+           duplicateNumber=abs(nums[i]);
+       }
+
+       nums[index]*=-1;
+   }
+
+
+        return duplicateNumber;
+        
+    }
+
+
+
+    https://leetcode.com/problems/find-the-duplicate-number/description/
