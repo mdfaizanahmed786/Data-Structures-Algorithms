@@ -1,0 +1,29 @@
+ void sortColors(vector<int>& nums) {
+        // think of this: for 0 to low-1 all are zeores
+        // for 1: low to mid-1 all are ones
+        // for high+1 to n-1 all are twos
+        // for mid to high all are unsorted
+        int low=0, mid=0, high=nums.size()-1;
+        while(mid<=high){
+              if(nums[mid]==0){
+                  swap(nums[mid], nums[low]);
+                  mid++;
+                  low++;
+              }
+
+              else if(nums[mid]==1){
+                  mid++;
+              }
+              else{
+                  swap(nums[mid], nums[high] );
+                  high--;
+              }
+        }
+        
+        
+        
+    }
+
+
+    TC: O(N)
+    SC: O(1)
