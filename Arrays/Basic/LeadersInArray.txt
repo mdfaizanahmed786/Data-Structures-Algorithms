@@ -19,6 +19,8 @@ Always compare for an element to the right side of it. If it is greater than all
 TC: O(n^2)
 SC: O(N)
 
+
+
 IT IS ALSO FOR DUPLICATE ELEMENTS
 
 
@@ -37,4 +39,5 @@ Optimal: Start traversing from right side, and keep track of the maximum element
 
 TC: O(n)
 SC: O(N)
-        
+
+https://practice.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article

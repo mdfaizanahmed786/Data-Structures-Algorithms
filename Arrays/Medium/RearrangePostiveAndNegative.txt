@@ -1,0 +1,51 @@
+Rearrange postive and negative numbers
+
+Brute:
+Take two arrays of postive and negative arrays, and then merge them together
+ vector<int> positives;
+         vector<int> negatives;
+       
+
+         for(int i=0; i<nums.size(); i++){
+             if(nums[i]>0) positives.push_back(nums[i]);
+              else negatives.push_back(nums[i]);
+         }
+        
+          int positiveIndex=0, negativeIndex=0;
+         for(int i=0; i<nums.size(); i++){
+             if(i%2==0){
+                nums[i]=positives[positiveIndex++];
+             }
+             else{
+                   nums[i]=negatives[negativeIndex++];
+             }
+         }
+TC: O(2n)
+SC: O(n)
+
+
+REMEMBER: THIS APPROACH IS FOR N/2 ELEMENTS, WHERE POSITIVES AND NEGATIVES ARE EQUAL
+Variety 2 is in the image
+Optimal:
+We can use extra space to return the answer
+
+vector<int> ans(nums.size(),0);  //initialise with 0
+int positiveIndex=0, negativeIndex=1;
+         for(int i=0; i<nums.size(); i++){
+             if(nums[i]>0){
+               ans[positiveIndex]=nums[i];
+               positiveIndex+=2;
+             }
+             else{
+                  ans[negativeIndex]=nums[i]; 
+                  negativeIndex+=2;
+             }
+         }
+
+
+
+         return ans;
+TC: O(n)
+SC: O(n)
+
+https://leetcode.com/problems/rearrange-array-elements-by-sign/description/
