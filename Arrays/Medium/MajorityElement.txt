@@ -1,0 +1,27 @@
+Find Majorit element who appears more than n/2 times
+
+
+
+Brute: Apply linear search and count the number of times the element appears. If it appears more than n/2 times, return it. Else return -1.
+Remember to use fresh count variable for each element. (mention count inside of outer for loop)
+TC: O(n^2) SC: O(1)
+
+
+
+Better: You can use the hashmap
+TC:O(nlogn)+O(n): TC
+SC: O(n)
+
+
+Optimal: Moore's Voting Algorithm
+TC: O(n) SC: O(1)
+
+1. Start iterating in the array and maintain two variables, count and element.
+2. If the current element is equal to the element variable, increment the count variable.
+3. Else, decrement the count variable.
+4. If the count variable becomes 0, update the element variable with the current element and reset the count variable to 1.
+5. After the iteration, the element variable will have the majority element.
+6. Iterate again in the array and count the number of times the element variable appears in the array. If it appears more than n/2 times, return it. Else return -1.
+
+
+https://leetcode.com/problems/majority-element/description/
