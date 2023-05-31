@@ -1,0 +1,32 @@
+Given array you need to find maximum sub array sum
+
+
+Brute: O(n^3)
+Generate all sub arrays and find sum of each sub array and return maximum sum(in three loops)
+SC: O(1)
+
+Better: O(n^2)
+Generate all sub arrays and find sum of each sub array and return maximum sum(in two loops)
+
+
+Optimal: O(n)
+Use kadane's algorithm
+
+
+1. Start iterating in array, intialize sum and maxSum to 0
+2. keep adding array elements to sum variable
+3. if sum is greater than maxSum, update maxSum
+4. if sum is less than 0, update sum to 0 but why? because if sum is less than 0, it will decrease the sum of next sub array
+5. Whenever you are taking sum or adding, first add and then check if any condition is satisfied
+
+FOLLOW UP QUESTION:
+1. If you need to return the sub array as well, then you need to maintain two variables start and end
+2. Whenever sum==0, you can update start=i, and when sum>maxSum, you can update end=i
+
+
+Bonus: if in question, it says to return empty sub array as well, which means the maxSum>0, then you can just return maxSum as 0 and return empty array
+https://leetcode.com/problems/maximum-subarray/description/
+
+
+TC: O(n)
+SC: O(1)

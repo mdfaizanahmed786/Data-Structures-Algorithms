@@ -76,3 +76,5 @@ Optimal: Using two pointers:
  }
 
 TC: O(2n) SC: O(1)  
+
+https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1
