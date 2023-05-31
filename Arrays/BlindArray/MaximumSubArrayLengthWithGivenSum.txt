@@ -1,0 +1,78 @@
+Given an array, find maximum sub array length with given sum as k
+
+
+Brute:
+Iterate and find all sub arrays and check if sum is k
+O(n^3)
+
+ int longestLength=0;
+      for(int i=0; i<N; i++){
+              
+          for(int j=i; j<N; j++){
+               int lengthCount=0;
+               int sum=0;
+               for(int k=i; k<=j; k++){
+                   sum+=a[k];
+                   lengthCount++;
+               }
+               if(sum==K){
+                   longestLength=max(longestLength, lengthCount);
+               }
+          }
+    }
+
+Optimized code:
+
+for(int i=0; i<N; i++){
+    for(int j=i; j<N; j++){
+        sum+=a[j];
+        if(sum==K){
+            longestLength=max(longestLength, j-i+1);
+        }
+    }
+}
+
+TC: O(n^2)
+SC: O(1)
+
+
+Better: Using hashmap
+Will be available soon
+
+
+Optimal: Using two pointers:
+
+1. Initialize two pointer left and right with 0
+2. Initialize sum as first element of array
+3. Start incrementing the right pointer, and then add sum+=arr[right]
+4. If the sum exceeds the K value, decrement the sum by applying anoter while loop, and increase left pointer
+5. If sum equals the k, take the maximum value of it.
+
+ int i=0, j=0;
+ long long sum=a[0];
+ while(j<N){
+    
+    
+    // we are checking sum before hand, because the first value might also be the desired answer
+
+    // use while loop here
+    while(sum>K && i<=j){
+       sum-=a[i];
+       i++;
+     }
+
+    if(sum==K){
+         longestLength=max(longestLength, j-i+1);
+     }
+
+
+    
+     j++;
+    
+
+     sum +=a[j];
+   
+    
+ }
+
+TC: O(2n) SC: O(1)  
