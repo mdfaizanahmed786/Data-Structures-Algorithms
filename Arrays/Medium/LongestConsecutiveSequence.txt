@@ -1,0 +1,72 @@
+Given an array, you need to find longest consecutive sequence or successive elements
+
+
+
+
+Brute: 
+int maxiLength=INT_MIN;
+      
+ 
+        for(int i=0; i<nums.size(); i++){
+
+
+            Taking first number
+
+
+
+          int x=nums[i];
+
+          
+          int count=1;
+
+          Taking fresh count
+
+          Taking linear search for next consecutive numbers (101, 102, 103, 104, 105)
+          while(linearSearch(nums, x+1)==true){
+            if the next number is present in the array, then increment the count and x
+              x=x+1;
+
+              count++;
+              
+          }
+          if(count>maxiLength){
+              maxiLength=count;
+          }
+        }
+        return maxiLength;
+
+TC:O(N^2) SC:O(1)
+
+
+Better:
+1. Sort the array
+2. Take three variables, count, lastSmaller=INT_MIN, longestLength=1 (because atleast one element will be there)
+3. Start traversing the array
+4. if nums[i]-1 is equal to lastSmaller, increment the count, update lastSmaller=nums[i]
+5. if nums[i]-1 is not equal to lastSmaller, then update count=1, lastSmaller=nums[i] (because we are starting a fresh count)
+6. Update longestLength=max(longestLength, count)
+
+TC:O(NlogN) SC:O(1)
+
+
+Optimal:
+1. Take a set and insert all the elements of the array
+2. Take a variable longestLength=1
+3. Start traversing the set
+4. if the element-1 is not present in the set, then start a fresh count int count=1, and start a while loop to check if element+1 is present in the set, if yes, then increment the count and element, else break the loop
+5. Update longestLength=max(longestLength, count)
+
+
+IMPORTANT:
+For Time complexity, unordered set takes O(1) for insertion, deletion and searching, if collisions are less, then it takes O(1), but if collisions are more, then it takes O(N) for insertion, deletion and searching
+
+You might think, inner while loop takes n iterations again? No, because we are checking only for the next consecutive element, so it will take only O(2N) time:
+
+Expalanation: outer loop takes N, now for each element, we are checking for the next consecutive element, so it will take N+N=2N time
+
+For Space complexity, unordered set takes O(N) space
+
+TC:O(3N) SC:O(N)
+
+https://leetcode.com/problems/longest-consecutive-sequence/description/
+
