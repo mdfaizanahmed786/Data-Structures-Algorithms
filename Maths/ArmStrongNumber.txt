@@ -1,0 +1,26 @@
+https://www.codingninjas.com/codestudio/problems/check-armstrong_589?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
+
+Check for armstrong_589
+int n;
+	cin>>n;
+
+	int countDigits=(int)log10(n)+1;
+	
+	int actualNumber=n;
+	int sum=0;
+
+	while(n>0){
+		int last_digit=n%10;
+		sum+=pow(last_digit, countDigits);
+		n/=10;
+	}
+
+	if(sum==actualNumber){
+		cout<<"true";
+	}
+	else{
+		cout<<"false";
+	}
+
+TC: O(logn)
+SC: O(1)
