@@ -1,0 +1,5 @@
+https://leetcode.com/problems/palindrome-number/
+
+
+Approach:
+1. Reverse integer, and check the acutal number with the reversed number
