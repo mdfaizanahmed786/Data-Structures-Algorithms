@@ -1,0 +1,51 @@
+Find GCD or HCF of given two numbers
+
+
+Brute: 
+
+for(int i=min(a,b); i>=1; i--){
+		if(a%i==0 && b%i==0) return i;
+	}
+    return 1;
+
+TC: O(min(a,b))
+SC: O(1)
+
+We are starting from reverse because, we want to find the largest number which divides both a and b. So, we are starting from min(a,b) and going till 1.
+
+Optimal:
+Using Euclid's Algorithm
+
+Algo: gcd(a,b)=gcd(a-b, b) a>b
+gcd(a,b)=gcd(a, b-a) b>a
+
+or 
+
+gcd(a,b)=gcd(a%b, b) a>b
+gcd(a,b)=gcd(a, b%a) b>a
+
+
+if one of the number is 0, then return the other number.
+
+
+while(a>0 && b>0){
+		if(a>b) a=a%b;
+		else b=b%a;
+
+	}
+
+
+if(a==0) return b;
+else return a;
+	
+
+TC: O(log(min(a,b)))
+Why log?
+Because, in each iteration, we are reducing the value of a or b by atleast half.
+and what is log base value?
+it is phi, because we don't know whether a or b is greater, so we are taking the worst case, which is phi.
+
+
+
+
+https://www.codingninjas.com/codestudio/problems/gcd_6557?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
