@@ -1,0 +1,18 @@
+https://www.codingninjas.com/codestudio/problems/number-of-digits_9173?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+    int count=0;
+    while(n>0){
+        // int last_digit=n%10;
+        count+=1;
+        n/=10;
+        
+    }
+
+    TC: O(log10n)
+    int count=(int)log10(n)+1;
+
+    return count;
