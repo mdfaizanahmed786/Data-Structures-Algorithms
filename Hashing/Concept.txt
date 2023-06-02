@@ -1,0 +1,67 @@
+What is hashing?
+
+Hashing is a technique used to convert a range of key values into a range of indexes of an array. We’re going to use the modulo operator to get a range of key values.
+
+
+It is just kind of pre-compute and fetch the values from a hashmap
+
+We can use hasharray to store the values and then we can use the hasharray to fetch the values
+
+If the maximum element is given, then we can use the hasharray to store the values and then we can use the hasharray to fetch the values
+The length of the hasharray will be the maximum element + 1
+hash[arr[i]]++;
+
+
+Normally, without hashing, we will use the following code:
+findElement(arr, n){
+    for(int i=0; i<n; i++){
+        if(arr[i] == x){
+            return i;
+        }
+    }
+    return -1;
+}
+
+If there are q numbers to find, then the time complexity will be O(n*q)
+Now, imagine there are 10^5 numbers and 10^5 queries, then the time complexity will be 10^10, which is not feasible
+and to perform 10^8 operations, it will take 1 second
+for 10^10 operations, it will take 100 seconds
+
+So, we need to reduce the time complexity
+
+We can even hash a string with individual characters
+if only small alpahbets are given, we can use an array of size 26 to store the values
+hash[s[i] - 'a']++;
+
+if only capital alpahbets are given, we can use an array of size 26 to store the values
+hash[s[i] - 'A']++;
+
+if both small and capital alpahbets are given, we can use an array of size 256 to store the values
+hash[s[i]]++ because the integer hash array will auto cast the character to its ascii value
+
+
+Unordered map and map:
+unordered map is implemented using hashing
+map is implemented using balanced binary search tree
+
+unordered map is faster than map
+map is ordered, unordered map is unordered
+
+unordered map can have any data type as key, but map can only have primitive data types as key (not set, vector, pair   etc)
+
+
+TC: For unoredere map, it is O(1) for insertion, deletion and searching, but if collisions happen then it will be O(n)
+For map, it is O(logn) for insertion, deletion and searching
+
+
+What are collisions?
+Collisions occur when two keys hash to the same index in an array. To store both keys, we can use one of the following techniques:
+1. Separate chaining
+2. Open addressing
+
+A long chain will be created in sorted chaining, which will increase the time complexity. This is just like a linked list.
+
+
+
+
+
