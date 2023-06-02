@@ -1,0 +1,26 @@
+https://www.codingninjas.com/codestudio/problems/check-prime_624674?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
+
+
+int n;
+	cin>>n;
+	int count=0;
+for(int i=1; i*i<=n; i++){
+	if(n%i==0){
+		count++;
+		if((n/i)!=i){
+			count++;
+		}
+	}
+}
+
+if(count==2){
+	cout<<"true";
+}
+
+else{
+	cout<<"false";
+}
+
+
+Tc: O(sqrt(n))
+Sc: O(1)
