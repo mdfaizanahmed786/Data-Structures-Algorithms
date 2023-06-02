@@ -1,0 +1,43 @@
+https:www.codingninjas.com/codestudio/problems/print-all-divisors-of-a-number_1164188?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=1
+
+   Now instead of just going till n^2, we can go till square root of n sqrt(n), why?
+     36:
+     1   36  (i, n/i)
+     2   18  (i, n/i)
+     3   12  (i, n/i)
+     4   9   (i, n/i)
+     6   6   (i, n/i)
+    -----------------
+     9   4   (i, n/i)
+     12  3   (i, n/i)
+     18  2   (i, n/i)
+     36  1   (i, n/i)
+
+     but taking directly sqrt(n) will repeatedly call the function many times, so 
+     instead we can take i*i
+   vector<int> ls;
+
+O(sqrt(n))
+    for(int i=1; i*i<=n; i++){
+        if(n%i==0){
+
+           ls.push_back(i);
+           if((n/i)!=i)
+         ls.push_back(n/i);
+        
+            
+           
+        }
+    }
+m=no of divisors
+    O(mlogm)+O(m)
+
+    sort(ls.begin(),ls.end());
+    for(auto it:ls) cout<<it<<" ";
+
+Total Time Complexity: O(sqrt(n))+O(mlogm)+O(m) = O(sqrt(n))+O(mlogm)
+Space Complexity: O(m)
+
+
+
+   
