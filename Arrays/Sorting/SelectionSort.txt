@@ -1,0 +1,34 @@
+Given an array, sort an array using selection sort.
+
+
+Approach:
+1. Find the minimum element in the array till last and swap it with the element at the beginning.
+2. Repeat the same process for the remaining array.
+
+https://www.codingninjas.com/codestudio/problems/selection-sort_981162?leftPanelTab=1
+
+Code in cpp:
+
+ for(int i=0; i<n-1; i++){
+      int minIndex=i;
+      for(int j=i+1; j<n; j++){
+          if(arr[j]<arr[minIndex])
+              minIndex=j;
+      }
+swap(arr[minIndex], arr[i]);
+      
+  }
+
+or
+
+  for(int i=0; i<n-1; i++){
+    for(int j=i; j<n; j++){
+        if(arr[j]<arr[i])
+            swap(arr[j], arr[i]);
+    }
+  }
+
+
+
+TC: O(n^2)
+SC: O(1)
