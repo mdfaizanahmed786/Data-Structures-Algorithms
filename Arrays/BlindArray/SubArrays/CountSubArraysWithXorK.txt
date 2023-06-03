@@ -1,0 +1,40 @@
+  Given an array of integers A and an integer B.
+Find the total number of subarrays having bitwise XOR of all elements equals to B.
+
+https://www.codingninjas.com/codestudio/problems/subarrays-with-xor-k_6826258?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTab=0
+  
+  
+  Brute:
+  int count=0;
+     for(int i=0; i<a.size(); i++){
+         int xorSum=0;
+         for(int j=i; j<a.size(); j++){
+             xorSum=xorSum^a[j];
+             if(xorSum==b){
+                 count++;
+             }
+
+            
+         }
+     }
+
+    TC:O(n^2)
+    SC:O(1)
+
+Optimal:
+    map<int, int> mpp;
+    mpp[0]=1;
+    int XR=0;
+
+    for(int i=0; i<a.size(); i++){
+        XR=XR^a[i];
+        int x=XR^b;
+        count+=mpp[x];
+        mpp[XR]++;
+
+
+    }
+
+    return count;
+    TC:O(nlogn) or O(n) (depending upon the map)
+    SC:O(n)
