@@ -21,4 +21,6 @@ Optimizing the code:
      }
 
     TC: O(n^2)
+    Best Case: O(n) when array is already sorted
+    Bubble sort another name is sinking sort
     SC: O(1)
