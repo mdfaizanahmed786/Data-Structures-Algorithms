@@ -1,0 +1,16 @@
+Given array, sort array using bubble sort
+
+  swaping the ith highest element in the ith round
+     total rounds will be: n-1
+     in each iteration will be n-round-1 for each round back element will be reduced by one, because maximum element will reach its place
+
+     for(int round=0; round<n-1; round++){
+         for(int j=0; j<n-round-1; j++){
+              if(arr[j]>arr[j+1]){
+                  swap(arr[j], arr[j+1]);
+              }
+         }
+     }
+
+    TC: O(n^2)
+    SC: O(1)
