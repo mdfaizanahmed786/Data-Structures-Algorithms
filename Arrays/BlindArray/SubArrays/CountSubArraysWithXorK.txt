@@ -38,3 +38,13 @@ Optimal:
     return count;
     TC:O(nlogn) or O(n) (depending upon the map)
     SC:O(n)
+
+
+    Approach: Optimal:
+
+    1. We know that there will be some starting and ending point.
+    2. Till an element in array, we will take xor of all the elements.
+    3. Now, to have xor equal to b, there will be some x that exists, such that XR=x^b, now taking xor with b on both sides, we get XR^b=x.
+    4. So, now there must exists x in the hashmap, such that XR^b=x, so we will add the frequency of x in the count.  here XR is the front xor or prefix xor. In hashmap we are storing something like this: {prefix xor, frequency}. If there some x exists (as it is part of the prefix xor), such that XR^b=x, then we will add the frequency of x in the count. (as it will give us the subarray with xor equal to b).
+    5. Now, we will increase the frequency of XR in the hashmap.
+    6. Now, we will move to the next element and repeat the process.
