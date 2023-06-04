@@ -26,8 +26,6 @@ public:
 
 
 
-
-
          Now, working on the O(n^2logm(m because storing j values, if unoredered_set o(1) at the max)) solution
         SC: O(N for hashset, kind of we are storing all the elements)+O(2*no of triplets)
         for(int i=0; i<nums.size(); i++){
@@ -85,7 +83,7 @@ Better: Using hashset
 
 Approach: arr[k]=-(arr[i]+arr[j])
 1. Our task is to find this arr[k], so we will take a hashset and store all the elements of the array in it.
-2. now we will take two loops and check if the sum of the two elements is present in the hashset or not, if it is present then we will insert it into the set of vector, now sort the vector and insert it into the set, now return the vector of vector of set.
+2. now we will take two loops and check if the sum of the two elements is present in the hashset or not, if it is present then we will insert it into the set of vector, now sort the vector and insert it into the set, now return the vector of vector of set. (start inserting between i and j, so that we can get the unique triplets)
 3. If element is not present, then we will insert the second element into the hashset. (not the third one).
 TC: O(n^2logm(m because storing j values, if unoredered_set o(1) at the max)) SC: O(N for hashset, kind of we are storing all the elements)+O(2*no of triplets)
 

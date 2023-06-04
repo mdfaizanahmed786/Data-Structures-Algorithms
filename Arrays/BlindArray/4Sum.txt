@@ -1,0 +1,102 @@
+Find 4Sum in an array
+
+Given an array of integers and a number x, find all unique quadruplets which sum to x. (same approaches as 3sum)
+
+
+Brute:
+O(n^4) time
+SC: O(2* no of unique quadruplets)
+
+     set<vector<int>>st;
+         for(int i=0; i<nums.size(); i++){
+             for(int j=i+1; j<nums.size(); j++){
+                 for(int k=j+1; k<nums.size(); k++){
+                     for(int l=k+1; l<nums.size(); l++){
+                         if(nums[i]+nums[j]+nums[k]+nums[l]==target){
+                             vector<int> temp={nums[i],nums[j],nums[k],nums[l]};
+                             sort(temp.begin(), temp.end());
+                             st.insert(temp);
+                         }
+                     }
+                 }
+             }
+         }
+
+             vector<vector<int>> ans(st.begin(), st.end());
+            return ans;
+
+
+Better:
+    TC:(N^3*logm(changes)) SC: O(N) for hashset(all elements might appear)+O(2*no of unique triplets)
+         set<vector<int>>st;
+         for(int i=0; i<nums.size(); i++){
+             for(int j=i+1; j<nums.size(); j++){
+             set<long long> hashset;
+                 for(int k=j+1; k<nums.size(); k++){
+                     long long sum=nums[i]+nums[j];
+                     sum+=nums[k];
+                     long long fourthElement=target-(sum);
+                     if(hashset.find(fourthElement)!=hashset.end()){
+                         vector<int> temp={nums[i],nums[j],nums[k], fourthElement};
+                             sort(temp.begin(), temp.end());
+                             st.insert(temp); 
+                     }
+                     hashset.insert(nums[k]);
+                 }
+             }
+         }
+          vector<vector<int>> ans(st.begin(), st.end());
+             return ans;
+
+
+
+Optimal:
+  vector<vector<int>> ans;
+        sort(nums.begin(), nums.end());
+        // TC: O(nlogn)+O(n^3 why n^3? (inside while loop k and l are appearing on each element))
+        // SC: O(no of quads) we are using ans to just return the answer, no extra space
+         
+         for(int i=0; i<nums.size(); i++){
+            //  first element is already checked here 
+             if(i>0 && nums[i]==nums[i-1]) {
+                 continue;
+             }
+
+             for(int j=i+1; j<nums.size(); j++){
+                //  second element is checked already
+                 if(j>i+1 && nums[j]==nums[j-1]){
+                     continue;
+                 }
+
+                 int k=j+1, l=nums.size()-1;
+
+                 while(k<l){
+                     long long sum=nums[i]+nums[j];
+                     sum+=nums[k]+nums[l];
+
+                     if(sum>target){
+                         l--;
+                     }
+
+                     else if(sum<target){
+                         k++;
+                     }
+
+                     else{
+                         vector<int> temp={nums[i], nums[j], nums[k], nums[l] };
+                         ans.push_back(temp);
+                         k++;
+                         l--;
+
+                         while(k<l && nums[k]==nums[k-1]) k++;
+                        //  if I am in a position, the next position is same or not I am checking for this last 
+                        // pointer
+                         while(k<l && nums[l]==nums[l+1]) l--;
+                         
+                     }
+                 }
+             }
+         }
+
+
+         return ans;
