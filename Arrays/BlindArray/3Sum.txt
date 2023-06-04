@@ -1,0 +1,103 @@
+Find 3Sum in an array.
+
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& arr) {
+         brute force approach
+
+       set<vector<int>> st;
+  
+       TC: O(n^3 * log(no of unique elements)) SC: O(2*no of triplets)
+         for(int i=0; i<nums.size(); i++){
+             for(int j=i+1; j<nums.size(); j++){
+                 for(int k=j+1; k<nums.size(); k++){
+                     if(nums[i]+nums[j]+nums[k]==0){
+                         vector<int> temp={nums[i], nums[j], nums[k]};
+                         sort(temp.begin(), temp.end());
+                         st.insert(temp);
+                     }
+                 }
+             }
+         }
+           vector<vector<int>> ans(st.begin(), st.end());
+
+
+
+
+
+
+
+         Now, working on the O(n^2logm(m because storing j values, if unoredered_set o(1) at the max)) solution
+        SC: O(N for hashset, kind of we are storing all the elements)+O(2*no of triplets)
+        for(int i=0; i<nums.size(); i++){
+          set<int> hashset;
+             for(int j=i+1; j<nums.size(); j++){
+                 int otherTriplet=-(nums[i]+nums[j]);
+                   if(hashset.find(otherTriplet)!=hashset.end()){
+                        vector<int> temp={nums[i], nums[j], otherTriplet};
+                         sort(temp.begin(), temp.end());
+                         st.insert(temp);
+                   }
+                  hashset.insert(nums[j]);
+            
+             }
+        }
+       vector<vector<int>> ans(st.begin(), st.end());
+
+
+
+  vector<vector<int>> ans;
+   TC: O(nlogn)+O(n^2) SC: O(no of unique elements)
+  sort(arr.begin(), arr.end());
+        for(int i=0; i<arr.size(); i++){
+          if(i>0 && arr[i]==arr[i-1]) continue;
+       int j=i+1, k=arr.size()-1;
+       while(j<k){
+           if(arr[i]+arr[k]+arr[j]==0){
+               vector<int> temp={arr[i], arr[j], arr[k]};
+               ans.push_back(temp);
+               j++;
+               k--;
+                if k and j are equal it is no point of taking again as we have already considered a triplet
+                while(j<k && arr[j]==arr[j-1]) j++;
+           while(j<k && arr[k]==arr[k+1]) k--;
+           }
+           else if(arr[i]+arr[k]+arr[j]>0){
+               k--;
+           }
+           else{
+               j++;
+           }
+          
+       }
+   }
+              return ans;
+    }
+};
+
+
+
+Brute: Just take three loops and take a set of vector, now sort the vector and insert it into the set, now return the vector of vector of set.
+TC: O(n^3 * log(no of unique elements)) SC: O(2*no of triplets)
+
+Better: Using hashset
+
+Approach: arr[k]=-(arr[i]+arr[j])
+1. Our task is to find this arr[k], so we will take a hashset and store all the elements of the array in it.
+2. now we will take two loops and check if the sum of the two elements is present in the hashset or not, if it is present then we will insert it into the set of vector, now sort the vector and insert it into the set, now return the vector of vector of set.
+3. If element is not present, then we will insert the second element into the hashset. (not the third one).
+TC: O(n^2logm(m because storing j values, if unoredered_set o(1) at the max)) SC: O(N for hashset, kind of we are storing all the elements)+O(2*no of triplets)
+
+
+
+Optimal: Two pointer approach
+Approach:
+1. Sort the array.
+2. take first pointer and fix it to one position
+3. take two pointers, one at the start and one at the end, where start=i+1 and end=arr.size()-1
+4. now check if the sum of the three elements is equal to zero or not, if it is equal to zero then push it into the vector of vector.
+5. if the sum is greater than zero then decrement the end pointer.
+6. if the sum is less than zero then increment the start pointer.
+7. now if the start and end pointer are equal then it is no point of taking again as we have already considered a triplet, so we will increment the start pointer and decrement the end pointer.
+8. Now, if start>end, we will move the fix pointer forwards, and again repeat the process. but we need to check if the fix pointer is equal to the previous one or not, if it is equal then we will continue.(skip to next iteration)
