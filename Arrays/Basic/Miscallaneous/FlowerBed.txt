@@ -1,0 +1,34 @@
+You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
+
+Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+
+
+ bool canPlaceFlowers(vector<int>& nums, int n) {
+      
+        int count=0;
+        bool inserted=false;
+        int i=0;
+        // TC: O(n) SC:O(1)
+        // Checking the flowerbed, if they are inserted, already mark them as false, and check next one whether next one is one or not and whether the previous one is inserted or not, if the condition becomes true, we increase the count and mark inserted as true and if the condition does not satisfy, mark inserted as false and skip to next iteration.
+        for(; i<nums.size()-1; i++){
+            if(nums[i]==1) inserted=true;
+              else if(nums[i]==0){
+                if(nums[i+1]!=1 && inserted==false){
+                    count++;
+                    inserted=true;
+                }
+                else{
+                    inserted=false;
+                    continue;
+                }
+            }
+
+        }
+       if(nums[i]==0 && inserted==false) count++;
+
+        if(count>=n){
+            return true;
+        }
+
+        return false;
+    }
