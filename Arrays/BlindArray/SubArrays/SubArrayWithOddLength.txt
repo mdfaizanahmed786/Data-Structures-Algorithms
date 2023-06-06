@@ -1,0 +1,61 @@
+Given an array you need to find sum of all subarrays whose lenght is odd
+
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int>& arr) {
+        int sum=0;
+ TC: O(n^3) SC:O(1)
+         for(int i=0; i<arr.size(); i++){
+             int oddLength=0;
+             for(int j=i; j<arr.size(); j++){
+                  oddLength++;
+               
+                 if(oddLength%2==0) continue;
+                 for(int k=i; k<=j; k++){
+              
+                     sum+=arr[k];
+                  
+                 }
+               
+            
+             }
+         }
+
+ O(n^2) 
+         for(int i=0; i<arr.size(); i++){
+               int oddSum=0;
+               int oddLength=0;
+             for(int j=i; j<arr.size(); j++){
+                 oddLength++;
+                 oddSum+=arr[j];
+                 if(oddLength%2!=0){
+                     sum+=oddSum;
+                 }
+             }
+         }
+
+TC:O(N)
+for(int i=0; i<arr.size(); i++){
+    int noOfArrayStartWithIndex=arr.size()-i;
+    int noOfArrayEndWithIndex=i+1;
+    int totalNoOfSubArrays=noOfArrayStartWithIndex*noOfArrayEndWithIndex;
+    int oddOnes=totalNoOfSubArrays/2;
+     We are doing this because, odd sometimes must be get added if to one
+    if(totalNoOfSubArrays%2==1){
+           oddOnes++;
+    }
+
+    sum+=oddOnes*arr[i];
+
+}
+
+
+
+
+
+
+
+    return sum;
+    }
+
+};
