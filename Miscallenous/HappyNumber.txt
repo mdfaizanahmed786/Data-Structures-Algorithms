@@ -40,4 +40,5 @@ public:
            
          
 }
+TC: O(klogn) where k is the maximum number of iterations in the while loop and n is the value of the input number.
 }
