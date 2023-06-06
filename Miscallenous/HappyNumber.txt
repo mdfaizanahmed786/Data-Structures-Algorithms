@@ -1,0 +1,43 @@
+Write an algorithm to determine if a number n is happy.
+
+A happy number is a number defined by the following process:
+
+Starting with any positive integer, replace the number by the sum of the squares of its digits.
+Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+Those numbers for which this process ends in 1 are happy.
+Return true if n is a happy number, and false if not.
+
+
+
+
+Code:
+class Solution {
+    long long getSum(int n){
+        long long digitSum=0;
+        while(n>0){
+             int last_digit=n%10;
+             digitSum+=last_digit*last_digit;
+             n/=10;
+        }
+
+        return digitSum;
+    }
+public:
+    bool isHappy(int n) {
+        unordered_set<int> set;
+        // The main funda here is, if the number appears twice, the cycle will repeat again which you don't want. So if the number appears again, you will return false.
+     while(true) {
+            if (n == 1) {
+                return true;
+            }
+            if (set.count(n)) {
+                return false;
+            }
+            set.insert(n);
+            n = getSum(n);
+        }
+           
+           
+         
+}
+}
