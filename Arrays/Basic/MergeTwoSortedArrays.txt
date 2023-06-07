@@ -1,0 +1,36 @@
+  You are given two sorted arrays, you need to merge them in sorted order.
+  
+  Brute force approach(O(n+m), O(n+mlog(n+m)))
+         vector<int> ans;
+         for(int i=0; i<m; i++){
+             ans.push_back(nums1[i]);
+         }
+         for(int i=0; i<n; i++){
+             ans.push_back(nums2[i]);
+         }
+
+         sort(ans.begin(), ans.end());
+         nums1=ans;
+
+
+ Different approach in case of this one. O(min(n, m))+O(nlogn)+O(mlogm) (in this it is automatically merged and sorted)
+
+ https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1
+ SC: O(1) no extra space we are using
+         int i=m-1, j=0;
+         while(i>=0 && j<n){
+              if(nums1[i]>nums2[j]){
+                  swap(nums1[i], nums2[j]);
+                  i--;
+                  j++;
+              }
+              else{
+                  break;
+              }
+ }
+
+ sort(nums1.begin(), nums1.end());
+ sort(nums2.begin(), nums2.end());
+
+
+ We can also use two pointer approach to solve this problem.
