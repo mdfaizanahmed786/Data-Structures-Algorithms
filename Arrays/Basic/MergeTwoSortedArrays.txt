@@ -15,7 +15,7 @@
 
  Different approach in case of this one. O(min(n, m))+O(nlogn)+O(mlogm) (in this it is automatically merged and sorted)
 
- https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1
+ https:practice.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1
  SC: O(1) no extra space we are using
          int i=m-1, j=0;
          while(i>=0 && j<n){
@@ -34,3 +34,55 @@
 
 
  We can also use two pointer approach to solve this problem.
+
+
+
+
+
+int gap=(n+m)/2 + (n+m)%2;
+
+void swapIfGreater(long long nums1[], long long nums2[], int idx1, int idx2){
+          if(nums1[idx1]>nums2[idx2]){
+              swap(nums1[idx1], nums2[idx2]);
+          }
+      }
+
+      
+while(gap>0){
+    int left=0;
+    int right=gap;
+    while(right<(n+m)){
+         arr1 and arr2 positions
+         if index on the merged array is 5 and now you want to find out the index of the 
+         second array, you can just subtract (index(of merged array)-lenght of first array)
+        if(left<n && right>=n){
+           swapIfGreater(nums1, nums2, left, right-n);
+        }
+         if both pointers are in right array which is arr2
+        else if(left>=n){
+            swapIfGreater(nums2, nums2, left-n, right-n);
+        }
+          if both pointers are in left array which is arr1
+        
+        else{
+            swapIfGreater(nums1, nums1, left, right);
+        }
+        
+         left++;
+         right++;
+    }
+     if(gap==1) break;
+    
+    gap=(gap/2)+(gap%2);
+  
+}
+
+
+Algorithm:
+1. Calculate the gap = (n + m)/2 + (n + m)%2
+2. Run a loop until gap >= 1
+3. Check if the indices are in the first array, swap the elements if the element in the first array is greater than the element in the second array
+4. Check if the indices are in the second array, swap the elements.
+5. Update the gap = gap/2 + gap%2
+
+TC: O((n+m)(moving pointer one by one, not exactly) *log2(n+m)(gap one))
