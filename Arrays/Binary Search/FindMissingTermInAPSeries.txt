@@ -1,0 +1,28 @@
+Actually done using binary search: but here is the O(n) solution
+
+
+class Solution{   
+public:
+    int findMissing(int arr[], int n) {
+        // code here
+       int d=(arr[n-1]-arr[0])/(n);
+        int idx=-1;
+        
+        int i=0, j=1;
+        while(j<n){
+            if(arr[j]-arr[i]!=d){
+                idx=i;
+                break;
+            }
+            else{
+                i++;
+                j++;
+            }
+        }
+        
+       return arr[idx]+d;
+    }
+};
+
+TC: O(n)
+SC: O(1)
