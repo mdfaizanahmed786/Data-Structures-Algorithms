@@ -1,0 +1,59 @@
+class Solution {
+    private: 
+      bool checkElement(vector<int> nums, int key){
+          for(int i=0; i<nums.size(); i++){
+              if(nums[i]==key) return true;
+          }
+          return false;
+      }
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+
+        vector<int> ans;
+  O(n^2) SC:O(1) I am using just extra space to return the answer
+         for(int i=1; i<=nums.size(); i++){
+             if(!checkElement(nums, i)){
+                 ans.push_back(i);
+             }
+         }
+
+
+
+
+
+ unordered_set<int> st;
+  SC: O(n)+O(1) TC: O(2n)
+ for(int i=0; i<nums.size(); i++){
+ st.insert(nums[i]);
+
+ }
+
+ for(int i=1; i<=nums.size(); i++){
+     if(!st.count(i)){
+         ans.push_back(i);
+     }
+ }
+
+
+ Optimal solution
+    TC: O(n) SC: O(1)
+
+  Set contents of all indices (minus 1) that appear in the array to be negative
+        for (int i = 0; i < nums.size(); ++i)
+        {
+			 Note that we have to use the absolute value in the next 2 lines, to avoid trying to access a negative index in some cases
+            if (nums[abs(nums[i]) - 1] > 0)
+                nums[abs(nums[i]) - 1] *= -1;
+        }
+        
+         A positive element means that the element (index + 1) does not appear in the array, so save it
+        for (int i = 0; i < nums.size(); ++i)
+            if (nums[i] > 0)
+                ans.push_back(i + 1);
+        
+        return ans;
+
+ }
+   
+
+};
