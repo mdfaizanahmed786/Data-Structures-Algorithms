@@ -1,0 +1,15 @@
+Approach to count sort:
+
+=> Count sort is a sorting technique based on keys between a specific range. It works by counting the number of objects having distinct key values (kind of hashing). Then doing some arithmetic to calculate the position of each object in the output sequence.
+
+
+1. Calcuate maximum element in array
+2. Create a count array of size 1000000
+3. Store the count of each element in the count array
+4. Modify the count array such that each element at each index stores the sum of previous counts (cumulative sum) why? 
+For instance, 1 appears 3 times in original array, to appear number 2 next to it, we need to add 3 to the index 2 in the count array.
+5. Create an output array of size same as input array
+6. Traverse the input array from last and put the elements in output array using count array by decrementing the count of each element by 1.
+
+Time Complexity: O(n+k) where n is the number of elements in input array and k is the range of input.
+
