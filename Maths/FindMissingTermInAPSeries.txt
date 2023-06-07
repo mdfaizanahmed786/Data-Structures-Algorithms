@@ -26,3 +26,5 @@ public:
 
 TC: O(n)
 SC: O(1)
+
+https://practice.geeksforgeeks.org/problems/missing-element-of-ap2228/1
