@@ -1,0 +1,19 @@
+check if all numbers have unqiue occurences in array
+
+
+ // TC: O(m+nlogn) SC:O(n+m)
+         unordered_map<int, int> mpp;
+
+         set<int> st;
+
+// Storing all the elements in map
+         for(int i=0; i<arr.size(); i++){
+             
+            mpp[arr[i]]++;
+         }
+// if any duplicate occurence found, automatically set size will decrease, which emans it will not store the duplicate elements inside of it...
+         for(auto it:mpp){
+             st.insert(it.second);
+         }
+
+         return st.size()==mpp.size();
