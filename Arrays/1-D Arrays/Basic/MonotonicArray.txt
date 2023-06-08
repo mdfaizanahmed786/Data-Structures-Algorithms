@@ -1,0 +1,25 @@
+Check whether the given array is monotonic or not:
+
+Optimal : (O(n) time and O(1) space)
+
+ bool isMonotonic(vector<int>& nums) {
+      bool isIncreasing=false;
+      bool isDecreasing=false;
+        for(int i=0; i<nums.size()-1; i++){
+          // if both are equal no need to compare, just skip to next iteration
+          if(nums[i]==nums[i+1]) continue;
+          // if one is increasing, continously set isIncreasing to true
+          if(nums[i]<nums[i+1]){
+            isIncreasing=true;
+          }
+          else{
+            // if one is decreasing continously, set isDecreasing to true;
+            isDecreasing=true;
+          }
+        }
+        // either one should decrease or increase, if both are happening simultaneously, then something is fishy, return false;
+    return isIncreasing && isDecreasing ? false : true;
+     
+
+
+    }
