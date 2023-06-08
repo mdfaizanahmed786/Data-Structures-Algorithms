@@ -1,0 +1,54 @@
+Given an unsorted array of integers nums, return the length of the longest continuous increasing subsequence (i.e. subarray). The subsequence must be strictly increasing.
+
+ Brute force approach
+         TC:O(n^2)  SC:O(1)
+         for(int i=0; i<nums.size(); i++){
+            int count=1;
+             for(int j=i+1; j<nums.size(); j++){
+                 if(nums[i]<nums[j] && nums[j-1]<nums[j]){
+                    count++;
+                }
+                else{
+                     break;
+                 }
+             }
+
+             maxCount=max(count, maxCount);
+         }
+
+
+
+
+
+
+
+
+
+int maxCount = 1;    // Initialize the maximum count to 1 (minimum length of subsequence)
+int i = 0;          // Initialize the first pointer i to the beginning of the array
+int j = i + 1;      // Initialize the second pointer j to the next element after i
+int count = 1;      // Initialize the count to 1 (current length of the increasing subsequence)
+
+while (i < nums.size() && j < nums.size()) {
+    if (nums[j - 1] < nums[j]) {
+        // If the current element is greater than the previous element,
+        // it is part of an increasing subsequence
+        j++;             // Move the second pointer j to the next element
+        count++;         // Increment the count of the increasing subsequence
+    } else {
+        // If the current element is not greater than the previous element,
+        // the increasing subsequence has ended
+        i++;             // Move the first pointer i to the next position
+        maxCount = max(count, maxCount);  // Update the maximum count if necessary
+        j = i + 1;       // Reset the second pointer j to the next element after i
+        count = 1;       // Reset the count for the new increasing subsequence
+    }
+}
+
+maxCount = max(count, maxCount);  // Update the maximum count for the last subsequence
+
+// Return the maximum count, which represents the length of the longest
+// continuous increasing subsequence in the given array
+return maxCount;
+
+TC:O(N) SC:O(1)
