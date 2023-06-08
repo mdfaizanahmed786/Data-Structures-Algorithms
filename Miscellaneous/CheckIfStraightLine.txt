@@ -1,0 +1,33 @@
+You are given an array coordinates, coordinates[i] = [x, y], where [x, y] represents the coordinate of a point. Check if these points make a straight line in the XY plane.
+
+ 
+
+class Solution {
+public:
+    bool checkStraightLine(vector<vector<int>>& coordinates) {
+       int x1=coordinates[0][0];
+       int x2=coordinates[1][0];
+
+       int y1=coordinates[0][1];
+       int y2=coordinates[1][1];
+
+       int xDiff=x2-x1;
+       int yDiff=y2-y1;
+     
+        // Starting from third point
+    for (int i = 2; i < coordinates.size(); i++) {
+    // x3-x1/x2-x1 == y3-y1/y2-y1 should satisfy the condition
+    // to avoid any zero exception error, we mulitply with difference on either side.
+    // In the case of a straight line, all points on that line will have the same slope with respect to any two points on the line. So, we can compare the slopes between the initial two points (x1, y1) and (x2, y2) and each subsequent point (currX, currY).
+    int currX = coordinates[i][0];
+    int currY = coordinates[i][1];
+
+    if ((currX - x1) * yDiff != (currY - y1) * xDiff) {
+        return false;
+    }
+}
+
+
+        return true;
+    }
+};
