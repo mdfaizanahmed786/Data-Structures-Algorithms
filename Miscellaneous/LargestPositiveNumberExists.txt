@@ -1,0 +1,40 @@
+Given an integer array nums that does not contain any zeros, find the largest positive integer k such that -k also exists in the array.
+
+Return the positive integer k. If there is no such integer, return -1.
+
+Brute: TC:O(n^2) SC:O(1)
+        int maximumNumber=-1;
+        for(int i=0; i<nums.size(); i++){
+            for(int j=0; j<nums.size(); j++){
+                if(nums[i]==-nums[j]){
+                    maximumNumber=max(maximumNumber, abs(nums[i]));
+                }
+            }
+        }
+        return maximumNumber;
+
+
+
+// TC: O(nlogn)+O(n) SC:O(1)
+        sort(nums.begin(), nums.end());
+
+        int i=0, j=nums.size()-1;
+        
+        while(i<j){
+            if(nums[i]>0) break;
+            if(abs(nums[i])==nums[j]) {
+                maximumNumber=max(maximumNumber, abs(nums[i]));
+                i++;
+                j--;
+            }
+
+            else if(abs(nums[i])<nums[j]){
+                j--;
+            }
+            else{
+                i++;
+            }
+            }
+
+        return maximumNumber;
+    
