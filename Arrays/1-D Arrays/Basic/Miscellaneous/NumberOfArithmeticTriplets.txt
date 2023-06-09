@@ -1,0 +1,82 @@
+You are given a 0-indexed, strictly increasing integer array nums and a positive integer diff. A triplet (i, j, k) is an arithmetic triplet if the following conditions are met:
+
+i < j < k,
+nums[j] - nums[i] == diff, and
+nums[k] - nums[j] == diff.
+Return the number of unique arithmetic triplets.
+
+
+Input: nums = [0,1,4,6,7,10], diff = 3
+Output: 2
+Explanation:
+(1, 2, 4) is an arithmetic triplet because both 7 - 4 == 3 and 4 - 1 == 3.
+(2, 4, 5) is an arithmetic triplet because both 10 - 7 == 3 and 7 - 4 == 3. 
+
+
+https://leetcode.com/problems/number-of-arithmetic-triplets/description/
+
+
+
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& nums, int diff) {
+       
+         O(n^3) SC:O(1)
+          int count=0;
+        for(int i=0; i<nums.size(); i++){
+            for(int j=i+1; j<nums.size(); j++){
+                for(int k=j+1; k<nums.size(); k++){
+                    if(nums[j]-nums[i]==diff && nums[k]-nums[j]==diff){
+                        count++;
+                    }
+                }
+            }
+        }
+
+    TC:O(N^2) SC:O(1)
+    int totalTriplets=0;
+   
+     for(int i=0; i<nums.size(); i++){
+         int nextTerm=nums[i]+diff;
+         int count=1;
+         for(int j=i+1; j<nums.size(); j++){
+             if(nextTerm==nums[j]){
+                 nextTerm=nums[j]+diff;
+                 count++;
+
+                 if(count==3){
+                     totalTriplets++;
+                     break;
+                 }
+             }
+         }
+     }
+
+ unordered_map<int, int> mpp;
+
+ TC:O(2N) SC:O(N)
+
+ for(int i=0; i<nums.size(); i++){
+     mpp[nums[i]]=true;
+ }
+
+
+ for(int i=0; i<nums.size(); i++){
+     if(mpp.find(nums[i]+diff)!=mpp.end() && mpp.find(nums[i]+2*diff)!=mpp.end() && mpp[nums[i]+2*diff]==true ){
+         totalTriplets++;
+         mpp[nums[i]]=false;
+         mpp[nums[i]+diff]=false;
+         mpp[nums[i]+2*diff]=false;
+
+
+
+     }
+ }
+
+    
+
+       return totalTriplets;
+
+
+    }
+};
