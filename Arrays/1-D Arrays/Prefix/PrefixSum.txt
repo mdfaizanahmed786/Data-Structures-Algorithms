@@ -1,0 +1,23 @@
+int *prefixSum = new int[n];
+
+    // Assigning a[0] to prefixSum[0]
+    prefixSum[0] = a[0];
+
+    // Iterating from i = 1 To i = n - 1
+    for (int i = 1; i < n; i++){
+        // Finding prefixSum[i-1]
+        int prev = prefixSum[i-1];
+
+        // Calculating and assigning the 
+        // value of prefixSum[i].
+        prefixSum[i] = prev + a[i];
+    }
+
+    // Returning the prefixSum array.
+    return prefixSum;
+
+
+    To calculate sum[l,r] we can use prefixSum[r] - prefixSum[l-1]
+
+
+    1. https://leetcode.com/problems/binary-prefix-divisible-by-5/description/
