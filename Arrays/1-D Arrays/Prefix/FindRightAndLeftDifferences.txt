@@ -1,0 +1,58 @@
+
+Given a 0-indexed integer array nums, find a 0-indexed integer array answer where:
+
+answer.length == nums.length.
+answer[i] = |leftSum[i] - rightSum[i]|.
+Where:
+
+leftSum[i] is the sum of elements to the left of the index i in the array nums. If there is no such element, leftSum[i] = 0.
+rightSum[i] is the sum of elements to the right of the index i in the array nums. If there is no such element, rightSum[i] = 0.
+Return the array answer.
+
+
+
+
+
+class Solution {
+public:
+    vector<int> leftRightDifference(vector<int>& nums) {
+         vector<int> prefixSum(nums.size(), 0);
+         int n=nums.size();
+         vector<int> ans;
+         vector<int> suffixSum(nums.size(), 0);
+         prefixSum[0]=0;
+         suffixSum[nums.size()-1]=0;
+         for(int i=1; i<nums.size(); i++){
+           prefixSum[i]=prefixSum[i-1]+nums[i-1];
+           suffixSum[n-i-1]=suffixSum[n-i]+nums[n-i];
+         }
+
+         for(int i=0; i<nums.size(); i++){
+             int diff=prefixSum[i]-suffixSum[i];
+             ans.push_back(abs(diff));
+         }
+
+vector<int> ans;
+int rsum=0;
+int lsum=0;
+
+for(int i=0; i<nums.size(); i++) rsum+=nums[i];
+for(int i=0; i<nums.size(); i++){
+     subtracting from right sum one by one
+    rsum-=nums[i];
+     storing the difference between left and right one
+    ans.push_back(abs(lsum-rsum));
+
+     adding to the lsum value again decreasing rsum and increasing lsum;
+    lsum+=nums[i];
+
+}
+
+
+        return ans;
+
+
+
+        
+    }
+};
