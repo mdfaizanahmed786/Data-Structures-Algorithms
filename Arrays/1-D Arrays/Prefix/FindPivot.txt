@@ -27,3 +27,50 @@ Return the leftmost pivot index. If no such index exists, return -1.
 
       
          return leftIndex==INT_MAX ? -1 : leftIndex;
+
+
+    Optimized approach: 
+
+    Algo:
+Step_#1:
+
+Let
+Left hand side be empty, and
+Right hand side holds all weights.
+
+
+Step_#2:
+
+Iterate weight_i from 0 to (n-1)
+
+During each iteration, take away weight_#i from right hand side, check whether balance is met or not.
+
+If yes, then the index i is the pivot index.
+
+If no, put weight_#i on the left hand side, and repeat the process until balance is met or all weights are exchanged.
+
+
+Step_#3:
+
+Finally, if all weights are exchanged and no balance is met, then pivot index does not exist, return -1.
+
+
+     int totalWeightOnRight=accumulate(nums.begin(), nums.end(), 0);
+         int totalWeightOnLeft=0;
+         for(int i=0; i<nums.size(); i++){
+             int currentWeight=nums[i];
+             totalWeightOnRight-=currentWeight;
+             if(totalWeightOnRight==totalWeightOnLeft){
+                 return i;
+             }
+
+             totalWeightOnLeft+=currentWeight;
+         }
+
+         return -1;
+
+TC: O(n) SC: O(1)
+
+
+
+
