@@ -1,0 +1,29 @@
+Given an array of integers nums, calculate the pivot index of this array.
+
+The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
+
+If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left. This also applies to the right edge of the array.
+
+Return the leftmost pivot index. If no such index exists, return -1.
+
+
+      Brute force approach
+         vector<int> prefixSum(nums.size(), 0);
+         prefixSum[0]=nums[0];
+         int leftIndex=INT_MAX;
+
+         for(int i=1; i<nums.size(); i++){
+              prefixSum[i]=prefixSum[i-1]+nums[i];
+
+         }
+         int backSum=0;
+         for(int i=nums.size()-1; i>=0; i--){
+             backSum+=nums[i];
+             if(backSum==prefixSum[i]){
+             leftIndex=min(leftIndex, i);
+             }
+
+         }
+
+      
+         return leftIndex==INT_MAX ? -1 : leftIndex;
