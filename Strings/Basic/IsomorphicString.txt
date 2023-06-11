@@ -1,0 +1,56 @@
+Given two strings s and t, determine if they are isomorphic.
+
+Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+
+
+Video: https://www.youtube.com/watch?v=6Qkail843d8
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+          unordered_map<char, char> mp1;
+         unordered_map<char, bool> mp2;
+
+for (int i = 0; i < s.size(); i++) {
+ 
+   if(mp1[s[i]]){
+       if(mp1[s[i]]!=t[i]){
+           return false;
+       }
+   }
+   else{
+       if(mp2[t[i]]==true){
+           return false;
+       }
+       else{
+           mp1[s[i]]=t[i];
+           mp2[t[i]]=true;
+       }
+   }
+
+
+}
+
+return true;
+    }
+
+};
+
+TC: O(n*(logm+logn)) SC: O(n)
+
+
+    Here is the algorithm
+     So basically you need to check one-one mapping in bidirectional way
+     First declare a hashmap for string1 and string 2
+     Now, check wheter string 1 is already mapped with string 2
+     If it is mapped, now check whether the same first string character is trying to map with different one
+     If it is trying to map with different one, return false
+
+     Now, if the first string character is not mapped, you need to ensure that the second string character is already in use before, if it used before, return false
+     If the second string character is not used before, just map the first one with second one and mark second one to true.
+
+
+     Intuition: First string character should not match twice with string 2
+                  Second string character should not match twice with string 1
