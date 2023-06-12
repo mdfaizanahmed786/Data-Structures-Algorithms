@@ -1,0 +1,82 @@
+Given an integer array nums, find a 
+subarray
+ that has the largest product, and return the product.
+
+The test cases are generated so that the answer will fit in a 32-bit integer.
+
+
+Brute froce: 
+TC: O(n^3) SC: O(1)
+Some better: O(n^2) SC: O(1)
+int maxProduct=INT_MIN;
+O(N^3) SC:O(1)
+for(int i=0; i<nums.size(); i++){
+for(int j=i; j<nums.size(); j++){
+    int product=1;
+    for(int k=i; k<=j; k++){
+        product=product*nums[k];
+
+    }
+    maxProduct=max(maxProduct, product);
+
+
+}
+}
+
+return maxProduct;
+
+
+Some better: Use only two for loops
+
+Optimal: Use observation that if there are even number of negative numbers, then the product of all the numbers will be the answer. If there are odd number of negative numbers, then the product of all the numbers to the left of the last negative number and the product of all the numbers to the right of the first negative number will be the answer.
+
+Code in C++:
+
+int maxProduct(vector<int>& nums) {
+    int n=nums.size();
+    int maxProduct=INT_MIN;
+    int product=1;
+    for(int i=0; i<n; i++){
+        product=product*nums[i];
+        maxProduct=max(maxProduct, product);
+        if(nums[i]==0){
+            product=1;
+        }
+    }
+    product=1;
+    for(int i=n-1; i>=0; i--){
+        product=product*nums[i];
+        maxProduct=max(maxProduct, product);
+        if(nums[i]==0){
+            product=1;
+        }
+    }
+    return maxProduct;
+}
+
+
+
+Single Pass:
+
+
+int n=nums.size();
+int maxProduct=INT_MIN;
+int prefixProduct=1;
+int suffixProduct=1;
+
+for(int i=0; i<n; i++){
+    prefixProduct=prefixProduct*nums[i];
+    suffixProduct=suffixProduct*nums[n-i-1];
+    maxProduct=max(maxProduct,max(prefixProduct, suffixProduct));
+    if(nums[i]==0){
+        prefixProduct=1;
+    }
+    else if(nums[n-i-1]==0) suffixProduct=1;
+    
+}
+
+return maxProduct;
+
+
+
+https://leetcode.com/problems/maximum-product-subarray/description/
