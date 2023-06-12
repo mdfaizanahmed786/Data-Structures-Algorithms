@@ -1,0 +1,101 @@
+Given an unsorted array Arr of size N of positive integers. One number 'A' from set {1, 2,....,N} is missing and one number 'B' occurs twice in array. Find these two numbers.
+
+Example 1:
+
+Input:
+N = 2
+Arr[] = {2, 2}
+Output: 2 1
+Explanation: Repeating number is 2 and 
+smallest positive missing number is 1.
+
+
+
+Brute force approach:
+      int repeating=-1, missing=-1;
+          
+        TC:   O(N^2)  SC:O(1)
+    for(int i=1; i<=n; i++){
+          int count=0;
+      
+        for(int j=0; j<a.size(); j++){
+              if(i==a[j]){
+                 count++;
+              }
+        }
+        if(count==2){
+            repeating=i;
+        }
+        else if(count==0){
+         
+        missing=i;
+
+        } 
+        
+
+    }
+    
+return {repeating, missing};
+
+
+
+
+ Better solution
+     using hashmap
+    
+     SC: O(m) TC:O(2N)
+    
+     unordered_map<int ,int> mpp;
+    
+     for(int i=0; i<a.size(); i++){
+         mpp[a[i]]++;
+     }
+    
+     for(int i=1; i<=n; i++){
+   
+     if(mpp.find(i)==mpp.end()){
+           missing=i;
+           
+         }
+        
+           if(mpp[i]==2){
+             repeating=i;
+         }
+     }
+
+
+
+Optimal solution: TC:O(N) SC:O(1)
+
+Taking sum of first n natural numbers
+Taking square of sum of first n natural numbers
+The adding the numbers in vector and subracting it from first sum
+Then adding the squares of numbers in vector and subtracting it from second sum
+Now we have: x-y=k -- (i), x^2-y^2=m -- (ii), now if we sum up and divide we get x+y=k/m -- (iii), now adding first 
+equation and last equation we get x value, to get y we subtract respectively from x
+
+long long N=n;
+long long s1=(N*(N+1))/2;
+long long s2=(N*(N+1)*(2*N+1))/6;
+long long sum=0; long long squareSum=0;
+
+for(int i=0; i<a.size(); i++){
+  sum+=a[i];
+  squareSum+=(long long)a[i]*(long long)a[i];
+  
+}
+
+long long val1=sum-s1;
+long long val2=(squareSum-s2);
+val2=val2/val1;
+
+long long x=(val1+val2)/2;
+long long y=x-val1;
+
+
+    
+    
+    
+
+    
+return {(int)x,(int)y};
