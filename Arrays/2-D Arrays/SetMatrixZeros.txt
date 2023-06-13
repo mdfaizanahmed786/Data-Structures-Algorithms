@@ -73,3 +73,102 @@ public:
 
     }
 };
+
+
+Better: Using hasharrays to solve, take it row wise and column wise which are intialized with 1, if any of the element is zero, then mark it to zero, and then solve it.
+
+Now traverse again, if they are zero, then mark the whole row and column to zero.
+
+Code:
+
+SC: O(n+m) TC:O(2*m*n)
+
+ for(int i=0; i<rows; i++){
+     for(int j=0; j<cols; j++){
+         if(matrix[i][j]==0){
+             rowAr[i]=1;
+             colAr[j]=1;
+         }
+     }
+ }
+
+ for(int i=0; i<rows; i++){
+     for(int j=0; j<cols; j++){
+         if(rowAr[i]==1 || colAr[j]==1){
+             matrix[i][j]=0;
+         }
+     }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Optimal Solution is very much similar to the previous one, just you take those hasharrays inside of the matrix now
+Timestamp: https://youtu.be/N0MgLvceX7M?t=857
+Code:
+// Better solution (taking those arrays inside of the matrix)
+// TC:O(2*N*M)
+int col=1;
+// marking phase
+for(int i=0; i<rows; i++){
+    for(int j=0; j<cols; j++){
+        if(matrix[i][j]==0){
+            // marking the first row or column with 0
+            matrix[i][0]=0;
+
+            if(j!=0){
+                // not marking to the first (which overlaps the horizontal and vertical one)
+                matrix[0][j]=0;
+            }
+            else{
+                // if any of the first column element is zero, then mark the untouched variable to zero.
+                col=0;
+            }
+        }
+    }
+}
+
+// leave the hasharray from both top and bottom
+for(int i=1; i<rows; i++){
+    for(int j=1; j<cols; j++){
+        if(matrix[i][j]!=0){
+            // if the first row or column is zero, then mark the element to zero
+            if(matrix[i][0]==0 || matrix[0][j]==0){
+                matrix[i][j]=0;
+            }
+        }
+    }
+    
+}
+
+
+// now solving the row first one, because in first row it is dependent on the first column
+if(matrix[0][0]==0){
+    for(int j=0; j<cols; j++){
+        matrix[0][j]=0;
+    }
+}
+
+if(col==0){
+    for(int i=0; i<rows; i++){
+        matrix[i][0]=0;
+    }
+}
