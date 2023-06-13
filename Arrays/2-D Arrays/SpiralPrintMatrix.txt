@@ -1,0 +1,57 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+         printing spiral matrix
+         TC:O(n*m) because we are checking for each condition
+
+
+         
+        int n=matrix.size();
+        int m=matrix[0].size();
+        vector<int> ans;
+        int top=0, bottom=n-1;
+        int left=0, right=m-1;
+
+        while(top<=bottom && left<=right){
+         moving from left to right
+         for(int i=left; i<=right; i++){
+            ans.push_back(matrix[top][i]);
+            }
+
+        top++;
+
+         moving from top to bottom
+        for(int i=top; i<=bottom; i++){
+            ans.push_back(matrix[i][right]);
+        }
+        right--;
+        
+         moving from right to left
+         imagine there is a single row and and top has already increased, but we are again going from right to left, what you will print??
+        if(top<=bottom){
+        for(int i=right; i>=left; i--){
+            ans.push_back(matrix[bottom][i]);
+        }
+        bottom--;
+
+        }
+
+       moving from bottom to top
+     now when spiral ends, there will be no top, so there must be some elements in between left and right..
+if(left<=right){
+        for(int i=bottom; i>=top; i--){
+           ans.push_back(matrix[i][left]);
+        }
+        left++;
+
+}
+        }
+
+       
+
+
+        return ans;
+
+        
+    }
+};
