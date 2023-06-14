@@ -1,0 +1,6 @@
+Similar to ./FindOccurences(firstandlast).txt
+
+1. Find the first occurence of the number in the array
+2. Find the last occurence of the number in the array
+return last-first+1
+

@@ -1,0 +1,148 @@
+Find first and last position of element in sorted array
+
+
+Brute force: Just do linear search.
+1. Take two variables first and last initialized to -1.
+2. If the element is equal to target, and if first is equal to -1, then update first to i.
+3. No matter what if the number is equal to target, update last to i.
+
+
+TC: O(n)
+SC: O(1)
+
+Code:
+
+int first=-1, last=-1;
+for(int i=0; i<nums.size(); i++){
+    if(nums[i]==target){
+        if(first==-1) first=i;
+        last=i;
+    }
+}
+
+return {first, last};
+
+
+Optimal: Binary search
+
+To find using lower and upper bound
+
+
+class Solution {
+    public:
+     int upperBound(vector<int> &arr,int n, int x){
+	// Write your code here.	
+	int low=0, high=n-1;
+	int idx=n;
+	while(low<=high){
+		int mid=low+(high-low)/2;
+		if(arr[mid]>x){
+           idx=mid;
+		   high=mid-1;
+		}
+		else{
+			low=mid+1;
+		}
+	}
+
+	return idx;
+}
+
+public:
+int lowerBound(vector<int> arr, int n, int x) {
+	// Write your code here
+
+	// Lower bound of x is defined as the smallest index, such that arr[index]>=n where n is the number that we have find out
+
+	int low=0, high=n-1;
+    int idx=arr.size();
+	
+	while(low<=high){
+int mid=low+(high-low)/2;
+if(arr[mid]>=x){
+	idx=mid;
+	high=mid-1;
+
+} else {
+    low=mid+1;
+
+}
+
+}
+return idx;
+}
+
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+     int lb=lowerBound(nums, nums.size(), target);
+     if(lb==nums.size() || nums[lb]!=target) return {-1, -1};
+     return {lb, upperBound(nums, nums.size(), target)-1};
+
+      
+    
+};
+    };
+
+At last upper bound will be exceeding the index by 1, so we have to subtract 1 from it.
+
+
+
+TC: O(2*logn)
+SC: O(1)
+
+
+More optimal: Binary search
+1. Just use binary search for first occurence and move left if the element is equal to target.
+2. Just use binary search for last occurence and move right if the element is equal to target.
+
+Code:
+ int findLastOccurence(vector<int> arr, int target){
+        int low=0, high=arr.size()-1;
+        int last=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==target){
+                 last=mid;
+                //  seraching from the begining
+                 low=mid+1;
+            }
+
+            else if(arr[mid]>target){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+
+        return last;
+    }
+
+
+For first occurence:
+  int findFirstOccurence(vector<int> arr, int target){
+        int low=0, high=arr.size()-1;
+        int first=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==target){
+                 first=mid;
+                //  seraching from the begining
+                 high=mid-1;
+            }
+
+            else if(arr[mid]>target){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+
+        return first;
+    }
+
+     if(first==-1) return {-1, -1}; if there is no first occurence, then there is no last occurence as well.
+
+
+    
