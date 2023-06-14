@@ -41,9 +41,8 @@ void printVariant2(int row)
 }
 
 void printVariant3(int row){
-     for(int i=0; i<row; i++){
-        
-     }
+    // Problem link:
+    //  https://leetcode.com/problems/pascals-triangle/description/
 }
 
 
