@@ -1,0 +1,28 @@
+Search insert element
+You are given a sorted array and a given number, if number exists in array return its index, if not return the index where it would be if it were inserted in order.
+
+
+It is just implementation of lower bound
+
+int searchInsert(vector<int>& arr, int x)
+{
+	// Write your code here.
+	int idx=arr.size();
+	
+	int low=0, high=arr.size()-1;
+		while(low<=high){
+int mid=low+(high-low)/2;
+if(arr[mid]>=x){
+	idx=mid;
+	high=mid-1;
+
+} else {
+    low=mid+1;
+
+}
+
+		}
+
+
+	return idx;
+}
