@@ -1,0 +1,38 @@
+What is lower bound of an element?
+It is the smallest element in the set that is greater than or equal to the given element.
+If there is no such element, we just return the size of the array.
+arr[index]>=n where index is the smallest one.
+
+Code:
+
+int low=0, high=n-1;
+
+int idx=n;
+while(low<=high){
+int mid=low+(high-low)/2;
+if(arr[mid]>=x){
+    may be this is the answer
+idx=mid;
+but we will check if there is any other element which is smaller than this
+high=mid-1;
+
+} else {
+low=mid+1;
+
+}
+
+
+
+}
+
+return idx;
+
+TC: O(logn)
+SC: O(1)
+
+STL: lower_bound(arr,arr+n,x)-arr;
+
+int lowerElement=lower_bound(arr.begin(), arr.end(), x)-arr.begin();
+
+for instance if you are need to find lower bound in this array from 2 to 6 : [1,2,3,4,5,6,7,8,9] then you need to write something like this in the array
+lower_bound(arr.begin()+2, arr.begin()+7, x)-arr.begin();
