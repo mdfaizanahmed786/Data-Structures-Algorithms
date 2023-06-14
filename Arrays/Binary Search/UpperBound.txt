@@ -1,0 +1,28 @@
+What is upper bound?
+Upper bound of an element is the smallest element greater than the given element.
+arr[index]>n and the index must be smallest
+
+
+Code:
+int upperBound(vector<int> &arr, int x, int n){
+	// Write your code here.	
+	int low=0, high=n-1;
+	int idx=n;
+	while(low<=high){
+		int mid=low+(high-low)/2;
+		if(arr[mid]>x){
+           idx=mid;
+		   high=mid-1;
+		}
+		else{
+			low=mid+1;
+		}
+	}
+
+	return idx;
+}
+
+TC:O(logn)
+SC:O(1)
+
+STL:upper_bound(arr.begin(),arr.end(),n)-arr.begin()
