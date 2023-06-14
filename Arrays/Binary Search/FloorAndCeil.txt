@@ -1,0 +1,44 @@
+You are given an sorted array, you need to find ceil and floor of a given number x. See below definitions.
+1. Ceil of a number x is the smallest number in array greater than or equal to x.
+2. Floor of a number x is the largest number in array smaller than or equal to x.
+Note: If target is not found in the array, return -1, -1
+
+
+
+pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
+	// Write your code here.
+	sort(arr, arr+n);
+	// Ceil is the smallest number greater than or equal to x
+	// Floor is the largest number less than or equal to x 
+	pair<int, int>p;
+	p.first=-1;
+	p.second=-1;
+	int low=0, high=n-1;
+	while(low<=high){
+		int mid=(low+high)/2;
+		if(arr[mid]>=x){
+           p.second=arr[mid];
+		   high=mid-1;
+
+		}
+		else{
+			low=mid+1;
+		}
+	}
+
+	low=0, high=n-1;
+	while(low<=high){
+		int mid=(low+high)/2;
+		if(arr[mid]<=x){
+			p.first=arr[mid];
+			low=mid+1;
+		}
+		else{
+			high=mid-1;
+		}
+
+	}
+
+	return p;
+	
+}
