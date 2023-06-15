@@ -1,0 +1,75 @@
+Write an efficient algorithm that searches for a value target in an m x n integer matrix matrix. This matrix has the following properties:
+
+Integers in each row are sorted in ascending from left to right.
+Integers in each column are sorted in ascending from top to bottom.
+
+
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+         This is naive brute force solution with time complexity of: O(n*m) with constant extra space.
+         int rows=matrix.size();
+         int cols=matrix[0].size();
+         for(int i=0; i<rows; i++){
+             for(int j=0; j<cols; j++){
+                 if(matrix[i][j]==target){
+                     return true;
+                 }
+             }
+         }
+
+        // return false;
+
+
+
+
+        int rowIndex=0;
+        int rows=matrix.size();
+        int cols=matrix[0].size();
+        int colIndex=cols-1;
+
+
+
+
+        while(colIndex>=0 && rowIndex<rows){
+            int element=matrix[rowIndex][colIndex];
+            if(element==target){
+                return true;
+
+
+            }
+            else if(element>target){
+                colIndex--;
+            }
+
+            else{
+                rowIndex++;
+            }
+        }
+
+
+        return false;
+
+
+    }
+};
+
+
+
+Try searching from backwards
+Algorithm:
+1. Intialize the colIndex to last column
+2. If the element at that rowIndex and colIndex is greater than target, do colIndex--
+3. If the element is smaller than target, then there is high chance that element may exists in that row, so do     row++
+4. If element is equal to the target, return true, else return false.
+
+Time Complexity: O(n+m)
+Space Complexity: O(1)
+
+
+Since the loop continues as long as colIndex is greater than or equal to 0 and rowIndex is less than the number of rows, it will iterate until either colIndex becomes negative or rowIndex exceeds or equals the number of rows.
+
+In the worst case, the target element is located at the bottom-left corner of the matrix. In this scenario, the loop will run through all the columns (m iterations) and then iterate through all the rows (n iterations) until it reaches the target or exhausts all elements.
+
+Thus, the total number of iterations in the worst case is n + m. As we analyze time complexity, we focus on the dominant term, and in this case, both n and m are considered. Therefore, the time complexity of the code is O(n + m).
