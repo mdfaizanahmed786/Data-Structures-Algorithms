@@ -1,0 +1,104 @@
+Given a boolean 2D array of n x m dimensions where each row is sorted. Find the 0-based index of the first row that has the maximum number of 1's.
+
+Input: 
+N = 4 , M = 4
+Arr[][] = {{0, 1, 1, 1},
+           {0, 0, 1, 1},
+           {1, 1, 1, 1},
+           {0, 0, 0, 0}}
+Output: 2
+Explanation: Row 2 contains 4 1's (0-based
+indexing).
+
+
+Brute force:
+1. Traverse each row and count the number of 1's in each row.
+2. Return the index of the row with maximum number of 1's.
+TC: O(n*m) SC: O(1)
+int index=-1;
+	    int maxCount=0;
+	    for(int i=0; i<n; i++){
+	        int count=0;
+	        for(int j=0; j<m; j++){
+	            if(arr[i][j]==1){
+	                count++;
+	            }
+	            
+	        }
+	        if(count>maxCount){
+	            maxCount=count;
+	            index=i;
+	            
+	           
+	        }
+	    }
+	    
+	    return index;
+	
+
+Optimal: Using binary search
+	    int index=INT_MAX;
+	    int maxCount=0;
+	    
+	    int rowIndex=0;
+	    int colIndex=m-1;
+	    int count=0;
+	    while(rowIndex<n){
+	    
+	        if(arr[rowIndex][colIndex]==1  && colIndex>=0){
+	            count++;
+	           
+	            
+	          if(count>maxCount){
+	                maxCount=count;
+	               index=rowIndex;
+	            }
+	   
+	            colIndex--;
+	            
+	           
+	            }
+	         
+	        
+	        else if(arr[rowIndex][colIndex]==0){
+	             
+	            rowIndex++;
+	            count=0;
+	          
+	            colIndex=m-1;
+	        }
+	        
+	    }
+	    
+	    
+	    return index==INT_MAX ? -1 : index;
+
+
+Algorithm:
+Certainly! Here's a step-by-step algorithm for the given code:
+
+1. Initialize the variables `index` and `maxCount` to `INT_MAX` and `0`, respectively. These variables will keep track of the row index with the maximum count of 1s.
+
+2. Initialize the variables `rowIndex` and `colIndex` to `0` and `m-1`, respectively. These variables will represent the current row and column indices.
+
+3. Initialize the variable `count` to `0`. This variable will keep track of the count of consecutive 1s in a row.
+
+4. Enter a while loop that continues until `rowIndex` reaches `n`.
+
+5. Check if the element at `arr[rowIndex][colIndex]` is equal to `1` and if `colIndex` is greater than or equal to `0`.
+
+   a. If the condition is true, increment `count` by `1`.
+
+   b. If `count` is greater than `maxCount`, update `maxCount` with the value of `count` and set `index` to `rowIndex`. This means we have found a new row with more 1s than any previous row.
+
+   c. Decrement `colIndex` by `1` to move to the next column.
+
+6. If the element at `arr[rowIndex][colIndex]` is `0`, this means the consecutive 1s in the current row have ended. In this case, move to the next row by incrementing `rowIndex` by `1`, reset `count` to `0`, and set `colIndex` to `m-1` to start from the rightmost column in the next row.
+
+7. After the loop, check if `index` is still equal to `INT_MAX`. If it is, no row had any 1s, so return `-1` to indicate that no row satisfies the conditions.
+
+8. Otherwise, return `index` as the row index that has the maximum count of 1s.
+
+That's the step-by-step algorithm for the given code. It iterates through the 2D array, keeping track of the row index with the maximum count of consecutive 1s.
+
+TC: O(n+m) SC: O(1)
