@@ -1,0 +1,32 @@
+Given an array nums, return true if the array was originally sorted in non-decreasing order, then rotated some number of positions (including zero). Otherwise, return false.
+
+There may be duplicates in the original array.
+
+Note: An array A rotated by x positions results in an array B of the same length such that A[i] == B[(i+x) % A.length], where % is the modulo operation.
+
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+        int count=0;
+        for(int i=1; i<nums.size(); i++){
+            // Check first for: 1 2 3 4 5 and if they satisfy the condition but as you can observe it satisifes last one.
+            //  for rotated one as well only one will be.
+            if(nums[i-1]>nums[i]){
+                count++;
+            }
+
+           
+        }
+        // for rotated not proprerly or not sorted one as well.
+         if(nums[nums.size()-1]>nums[0]){
+                count++;
+            }
+
+
+            return count<=1;
+        
+    }
+};
+
+TC: O(N)
+SC: O(1)
