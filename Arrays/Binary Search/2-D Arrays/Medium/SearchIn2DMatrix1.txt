@@ -1,0 +1,53 @@
+Each row is sorted in non-decreasing order.
+The first integer of each row is greater than the last integer of the previous row.
+Given an integer target, return true if target is in matrix or false otherwise.
+
+You must write a solution in O(log(m * n)) time complexity.
+
+
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        // first i would perform linear search
+        // for(int i=0; i<matrix.size(); i++){
+        //     for(int j=0; j<matrix[i].size(); j++){
+        //         if(matrix[i][j]==target){
+        //             return true;
+        //         }
+        //     }
+        // }
+
+        // return false;
+
+        // Will complete when binary search playlist will be started..
+        int rows=matrix.size();
+        int cols=matrix[0].size();
+
+        int low=0, high=(rows*cols-1);
+
+        while(low<=high){
+            int mid=(low+high)/2;
+            int element=matrix[mid/cols][mid%cols];
+            // to get specific rows and cols: divide mid value to no of cols the quotient will give you row and the mod will give you the column
+            if(element==target){
+                return true;
+            }
+            else if(element>target){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+
+        return false;
+    }
+};
+
+
+ Time Complexity: O(log(m*n))
+    Space Complexity: O(1)
+
+    To calcuate last index: rows*cols-1
+    To get specific rows and cols: divide mid value to no of cols the quotient will give you row and the mod will give you the column
