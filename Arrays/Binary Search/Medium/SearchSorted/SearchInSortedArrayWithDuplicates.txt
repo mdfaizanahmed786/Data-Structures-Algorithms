@@ -1,0 +1,92 @@
+You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once.
+
+Return the single element that appears only once.
+
+Your solution must run in O(log n) time and O(1) space.
+
+
+Brute force approach: O(n) time and O(1) space
+
+ class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+         if(nums.size()==1) return nums[0];
+         
+        for(int i=0; i<nums.size(); i++){
+            if(i==0){
+               
+                if(nums[i]!=nums[i+1]){
+                    return nums[0];
+                }
+            }
+
+           else if(i==nums.size()-1){
+                  if(nums[i]!=nums[i-1]){
+                    return nums[i];
+                }
+            }
+
+            else if(nums[i]!=nums[i-1] && nums[i]!=nums[i+1]){
+                return nums[i];
+            }
+
+
+        }
+
+        return -1;
+    }
+};
+
+
+
+  // All the edge cases
+     if(nums.size()==1) return nums[0];
+     if(nums[0]!=nums[1]) return nums[0];
+     if (nums[nums.size()-1]!=nums[nums.size()-2]) return nums[nums.size()-1];
+
+    //  Observation:
+    // If a number is unique, then left side pairs will have (even, odd), (even, odd) like ones
+    // else the pairs will have (odd, even), (odd, even)
+    // (even, odd) then element is on the right half
+    // (odd, even) then element is on the left half
+    //    TC:O(logn) SC:O(1)
+    int low=1, high=nums.size()-2;
+
+    while(low<=high){
+        int mid=(low+high)/2;
+        // checking both sides are equal or not
+        if(nums[mid]!=nums[mid-1] && nums[mid]!=nums[mid+1]){
+            return nums[mid];
+        }
+// if the mid index is odd
+        if(mid%2!=0){
+        // if the next element is same, means they lie in right half, so move to left 
+            if(nums[mid]==nums[mid+1]){
+                 high=mid-1;
+            }
+           // if the previous element is same, means they lie in left half, so move to right
+            else if(nums[mid]==nums[mid-1]){
+                low=mid+1;
+            }
+        }
+
+        // if the mid index is even
+        else{
+            // same conditions do apply here.
+            if(nums[mid]==nums[mid+1]){
+                 low=mid+1;
+               
+            }
+            else if(nums[mid]==nums[mid-1]){
+                 high=mid-1;
+            }
+        }
+
+        
+    }
+
+
+
+return -1;
+
+https://leetcode.com/problems/single-element-in-a-sorted-array/description/
