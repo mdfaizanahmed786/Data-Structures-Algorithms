@@ -1,0 +1,13 @@
+Given two positive integers a and b, return the number of common factors of a and b.
+
+An integer x is a common factor of a and b if x divides both a and b.
+
+
+Algorithm:
+1. Take minimum of them.
+2. Iterate from 1 to min.
+3. If both are divisible by i, then increment count.
+4. Return count.
+
+TC: O(min(a,b))
+SC: O(1)
