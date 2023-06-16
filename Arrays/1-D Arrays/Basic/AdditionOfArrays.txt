@@ -68,6 +68,9 @@ class Solution{
     }
 }
 
+
+Similar question: https://leetcode.com/problems/add-to-array-form-of-integer/description/
+
 The above solution is using two pointer approach
 Tc:O(n+m)
 Sc:O(1)
