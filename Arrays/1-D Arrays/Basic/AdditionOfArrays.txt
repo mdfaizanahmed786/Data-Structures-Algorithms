@@ -1,0 +1,73 @@
+Given two array A[0….N-1] and B[0….M-1] of size N and M respectively, representing two numbers such that every element of arrays represent a digit. For example, A[] = { 1, 2, 3} and B[] = { 2, 1, 4 } represent 123 and 214 respectively. The task is to find the sum of both the numbers.
+
+Example 1:
+
+Input : A[] = {1, 2}, B[] = {2, 1}
+Output : 33
+Explanation:
+N=2, and A[]={1,2}
+M=2, and B[]={2,1}
+Number represented by first array is 12.
+Number represented by second array is 21
+Sum=12+21=33
+
+
+
+
+Code:
+
+class Solution{
+    public:
+    string calc_Sum(int *a,int n,int *b,int m){
+    // Complete the function
+    string ans;
+    int i=n-1, j=m-1;
+    int carry=0;
+    while(i>=0 && j>=0){
+        int sum=a[i]+b[j]+carry;
+        int lastDigit=sum%10;
+        ans.push_back(lastDigit+'0');
+        carry=sum/10;
+      
+        i--;
+        j--;
+    }
+      
+      
+      
+    // What if the first number is still left we can still iterate on it
+      while(i>=0){
+        int sum=a[i]+0+carry;
+        int lastDigit=sum%10;
+        ans.push_back(lastDigit+'0');
+        carry=sum/10;
+      
+        i--;
+    }
+    
+     // What if the second number is still left we can still iterate on it.
+        while(j>=0){
+        int sum=0+b[j]+carry;
+        int lastDigit=sum%10;
+        ans.push_back(lastDigit+'0');
+        carry=sum/10;
+        j--;
+    }
+      if(carry) ans.push_back(carry+'0');
+      
+      while(ans[ans.size()-1]=='0'){
+          ans.pop_back();
+      }
+    
+    reverse(ans.begin(),ans.end());
+    
+    return ans;
+     
+    
+
+    }
+}
+
+The above solution is using two pointer approach
+Tc:O(n+m)
+Sc:O(1)
