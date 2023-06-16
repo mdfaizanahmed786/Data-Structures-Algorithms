@@ -1,0 +1,26 @@
+You are given a number N. You need to find no of trailing zeroes in N!.
+
+
+Example:
+5! = 120 so the output should be 1
+10! = 3628800 so the output should be 2
+
+Approach:
+1. If you divide number with 5, it will give you number of 5s in the number.
+2. If you divide number with 25, it will give you number of 25s in the number.
+3. If you divide number with 125, it will give you number of 125s in the number.
+
+So, you must repeat this process till n becomes 0.
+
+(n/5)+(n/25)+(n/125)+.....
+
+Code:
+int count=0;
+while(n>0){
+    count+=n/5;
+    n=n/5;
+}
+
+return count;
+
+Time Complexity: O(logn)
