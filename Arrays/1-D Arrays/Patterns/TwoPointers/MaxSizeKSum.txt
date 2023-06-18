@@ -1,0 +1,68 @@
+https://leetcode.com/problems/max-number-of-k-sum-pairs/description/
+
+You are given an integer array nums and an integer k.
+
+In one operation, you can pick two numbers from the array whose sum equals k and remove them from the array.
+
+Return the maximum number of operations you can perform on the array.
+
+
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        int count=0;
+        // O(N^2) SC:O(1)
+        // for(int i=0; i<nums.size(); i++){
+        //     if(nums[i]==-1) continue;
+        //     for(int j=i+1; j<nums.size(); j++){
+        //         if(nums[j]==-1) continue;
+        //         if(nums[i]+nums[j]==k){
+        //             count++;
+        //             nums[i]=-1;
+        //             nums[j]=-1;
+        //             break;
+        //         }
+        //     }
+        // }
+
+        // Better solution
+        // SC:O(m) TC:O(n)
+        // unordered_map<int,int> mpp;
+
+        // for(int i=0; i<nums.size(); i++){
+        //     int remaining=k-nums[i];
+        //     if(mpp[remaining]>0){
+        //         mpp[remaining]--;
+        //         count++;
+        //     }
+        //     else{
+        //         mpp[nums[i]]++;
+        //     }
+        // }
+
+
+//  Better solution
+sort(nums.begin(), nums.end());
+// Two pointer approach
+int low=0, high=nums.size()-1;
+
+while(low<high){
+    if(nums[low]+nums[high]==k){
+        low++;
+        high--;
+        count++;
+    }
+
+    else if(nums[low]+nums[high]>k){
+        high--;
+    }
+   else if(nums[low]+nums[high]<k){
+        low++;
+    }
+}
+
+
+
+        return count;
+    }
+};
