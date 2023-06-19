@@ -1,0 +1,82 @@
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+
+
+    Two pointer approach
+
+     int l=0, h=arr.size()-1;
+
+     vector<int> ans;
+
+ TC: O(n-k comparisions) SC:O(1)
+ Algorithm
+ 1. We have all differences below the array
+ 2. We want the closest element and so we need the closest ones
+ 3. If low has bigger number than higher, move low pointer else move higher pointer
+ 4. You wil reach one point where you'll get the subarray of size k
+
+//     while(h-l>=k){
+//      if(x-arr[l]>arr[h]-x){
+//                l++;
+//            }
+//            else{
+//                h--;
+//            }
+//     }
+
+
+//     return {arr.begin()+l, arr.begin()+h+1};
+
+
+
+
+
+ Using binary search + 2 pointer
+ Algorithm
+ 1. In first approach our window size was so big
+ 2. Let us use small window and expand it, earlier it was big we were shrinking, now we will expand
+ 3. Take lower bound of x, small index at number greater than or equal to x
+ 4. Lower bound will be our high, and high-1 will be our l
+ 5. low is second smallest, high is the smallest
+ 6. Now, to expand if the low is greater than high, move high right side else move left side
+
+int high=lower_bound(arr.begin(), arr.end(),x)-arr.begin();
+// if lower bound does not exists, it returns the last element position
+
+int low=high-1;
+while(k--){
+    // consider high is the first index, now if low reaches at negative -1 index, the closest will be after high.
+    if(low<0){
+        high++;
+    }
+    // if high is at last, there is no way to go above high, so move left
+    else if(high>=arr.size()){
+       low--;
+    }
+   else if(x-arr[low]>arr[high]-x){
+        high++;
+    } 
+    else{
+        low--;
+    }
+   
+}
+
+
+return vector<int>(arr.begin()+low+1, arr.begin()+high);
+
+
+
+
+
+
+    
+       
+
+      
+    }
+
+
+https://leetcode.com/problems/find-k-closest-elements/description/
+};
