@@ -92,4 +92,10 @@ TC: O(nlogn) and SC: O(n)
 
 
 Using binary search
+1. sort the array
+2. for each element in the array, search for the element k+nums[i] in the array
+3. if found, add it to the set pair.
+4. return the size of the set pair.
+
+TC: O(nlogn) and SC: O(n)
 
