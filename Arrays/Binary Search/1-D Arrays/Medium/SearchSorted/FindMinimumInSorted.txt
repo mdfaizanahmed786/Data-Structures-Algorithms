@@ -11,59 +11,26 @@ Given the sorted rotated array nums of unique elements, return the minimum eleme
 You must write an algorithm that runs in O(log n) time.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Solution {
 public:
     int findMin(vector<int>& nums) {
         // int minElement=*min_element(nums.begin(), nums.end());
         // return minElement;
-        int count=0;
 
-        int minElement=INT_MAX;
 
-        int low=0, high=nums.size()-1;
+          int low=0, high=nums.size()-1;
+        int ans=INT_MAX;
         while(low<=high){
             int mid=(low+high)/2;
-            if(nums[mid]<=nums[low]){
-               minElement=min(minElement, nums[mid]);
-                 count++;
-                  if(mid>0 && mid<nums.size()-1){
-                if(nums[mid]<nums[mid-1] || nums[mid]>nums[mid+1]){
-                    low=mid+1;
-                   
-                }
-                else{
-                    high=mid-1;
-                }
-
-                }
-                else{
-                      minElement=min(minElement, nums[mid]);
-                      low=low+1;
-                }
+            // first checking for sorted part, if they are sorted, then pick for the minimum number from it and then elimnate that part.
+            if(nums[mid]<=nums[high]){
+                ans=min(ans, nums[mid]);
+                high=mid-1;
             }
-
             else{
-                minElement=min(minElement, nums[low]);
-                 count++;
                 low=mid+1;
             }
         }
-
-cout<<count;
-        return minElement;
+        return ans;
     }
-};
+    }
