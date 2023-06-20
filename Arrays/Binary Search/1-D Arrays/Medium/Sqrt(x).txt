@@ -1,0 +1,44 @@
+You are given a number n, you need to find the square root of it.
+Only floor value is required.
+
+if you are required to find double value of square root, you can use inbuilt function sqrt().
+    
+Example 1:
+
+Input:
+n = 5
+Output: 2
+Explanation: Square root of 5 is 2.236068.
+The floor value of 2.236068 is 2.
+
+Answer in floor value code:
+Code to get floor value of square root of a number:
+
+Brute force:
+int ans=1;
+Linear search from 1 to n, if i*i<=n, ans=i, else break;
+for(int i=1; i<=n; i++){
+    if(i*i<=n){
+        ans=i;
+    } else {
+        break;
+    }
+}
+
+Eventually low will be pointing to the right one and high one will be pointing to the maximum one, so at the end high will be the answer.
+
+int floorSqrt(int n)
+{
+    // Write your code here.
+    int low=1, high=n;
+    while(low<=high){
+        long long mid=(low+high)/2;
+        long long square=mid*mid;
+        if(square<=n){
+            low=mid+1;
+        } else {
+          high = mid - 1;
+        }
+    }
+    return high;
+}
