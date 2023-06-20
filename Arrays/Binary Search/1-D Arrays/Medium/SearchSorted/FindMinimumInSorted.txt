@@ -34,3 +34,5 @@ public:
         return ans;
     }
     }
+
+    TC: O(logn) Worst: O(n/2) if it contains duplicates
