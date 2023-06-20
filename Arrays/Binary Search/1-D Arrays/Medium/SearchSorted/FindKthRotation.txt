@@ -1,0 +1,29 @@
+You are given n size array rotated one time, find the index of minimum element. which means you will also get the number of times the array is rotated.
+
+
+TC: O(logn)
+SC: O(1)
+
+
+int findKRotation(vector<int> &nums){
+    // Write your code here.    
+     int low=0, high=nums.size()-1;
+        int ans=INT_MAX;
+        int index=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            // first checking for sorted part, if they are sorted, then pick for the minimum number from it and then elimnate that part.
+            if(nums[mid]<=nums[high]){
+                if(nums[mid]<ans){
+                    ans=nums[mid];
+                    index=mid;
+                }
+              
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return index;
+}
