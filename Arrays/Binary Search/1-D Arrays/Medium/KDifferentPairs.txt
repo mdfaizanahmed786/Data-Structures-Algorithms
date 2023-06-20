@@ -1,0 +1,95 @@
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+int count=0;
+ set<vector<int>> st;
+ for(int i=0; i<nums.size(); i++){
+
+     for(int j=i+1; j<nums.size(); j++){
+         if(abs(nums[i]-nums[j])==k){
+         vector<int> ans={nums[i], nums[j]};
+         sort(ans.begin(), ans.end());
+         st.insert(ans);
+    
+         }
+     }
+ }
+
+TC: O(n^2) and SC: O(n)
+
+
+
+// using map
+         unordered_map<int, int> mpp;
+         for(int i=0; i<nums.size(); i++){
+             mpp[nums[i]]++;
+         }
+
+         for(auto it: mpp){
+             if(k==0){
+                  if(it.second>=2){
+                      count++;
+                  }
+             }
+         }
+
+         if(k==0) return count;
+        
+
+         for(int i=0; i<nums.size(); i++){
+             int remaining=k+nums[i];
+             if(mpp[remaining]!=0){
+                 count++;
+                 mpp[remaining]=0;
+             }
+         }
+TC: O(n) and SC: O(n)
+
+
+
+
+
+
+
+        // using two pointer approach
+
+        sort(nums.begin(), nums.end());
+        set<pair<int, int>> st;
+
+
+        int low=0, high=1;
+        while(high<nums.size()){
+            int diff=nums[high]-nums[low];
+            if(abs(diff)==k){
+        
+              st.insert({nums[low], nums[high]});
+                low++;
+                high++;
+               
+            }
+      
+            else if(abs(diff)>k){
+               low++;
+            }
+            else{
+              high++;
+            }
+            if(low==high) high++;
+        }
+
+        // return st.size();
+
+        return st.size();
+        
+    }
+};
+
+
+
+
+TC: O(nlogn) and SC: O(n)
+
+
+
+Using binary search
+
