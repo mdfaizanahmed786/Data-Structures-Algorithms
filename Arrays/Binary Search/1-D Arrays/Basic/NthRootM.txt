@@ -1,0 +1,47 @@
+You are given 2 numbers (n , m); the task is to find n√m (nth root of m).
+
+
+Input: n = 2, m = 9
+Output: 3
+Explanation: 3^2 = 9
+
+
+Brute force:
+int NthRoot(int n, int m) {
+  // Write your code here.
+ for(int i=1; i<=m/2; i++){
+   long long power=pow(i,n);
+   if(power>m) break;
+   if(power==m){
+     return i;
+   }
+ } 
+ return -1;
+}
+
+TC: O(mlog2N)
+For pow() function: O(log2N)
+SC: O(1)  
+
+
+Optimal: Using binary search
+int NthRoot(int n, int m) {
+  // Write your code here.
+int low=1,high=m;
+while(low<=high){
+  long long mid=(low+high)/2;
+  if(pow(mid, n)==m){
+    return mid;
+  }
+  else if(pow(mid, n)>m){
+    high=mid-1;
+  } else {
+    low = mid + 1;
+  }
+}
+
+ return -1;
+}
+
+TC: O(log2m) log2N for pow() function
+SC: O(1)
