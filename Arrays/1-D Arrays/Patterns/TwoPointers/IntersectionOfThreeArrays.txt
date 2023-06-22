@@ -1,0 +1,110 @@
+Given three arrays sorted in increasing order. Find the elements that are common in all three arrays.
+Note: can you take care of the duplicates without using any additional Data Structure?
+
+
+
+Input:
+n1 = 6; A = {1, 5, 10, 20, 40, 80}
+n2 = 5; B = {6, 7, 20, 80, 100}
+n3 = 8; C = {3, 4, 15, 20, 30, 70, 80, 120}
+Output: 20 80
+Explanation: 20 and 80 are the only
+common elements in A, B and C.
+
+ vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+    code here.
+         Solution 1
+     set<int> st;
+     for(int i=0; i<n1; i++){
+         for(int j=0; j<n2; j++){
+             for(int k=0; k<n3; k++){
+                 if(A[i]==B[j] && B[j]==C[k]){
+                     st.insert(A[i]);
+                 }
+             }
+         }
+     }
+
+
+
+
+
+            
+            // Solution 2
+            
+            vector<int> ans;
+              for(auto it:st){
+                  ans.push_back(i t);
+              }
+            
+             unordered_map<int, int> mpp;
+             set<int> st1;
+             set<int> st2;
+             set<int> st3;
+             for(int i=0; i<n1; i++){
+               st1.insert(A[i]);
+             }
+             for(int i=0; i<n2; i++){
+               st2.insert(B[i]);
+             }
+            
+              for(int i=0; i<n3; i++){
+                 st3.insert(C[i]);
+             }
+            
+           for(auto it: st1){
+               mpp[it]++;
+           }
+           for(auto it: st2){
+               mpp[it]++;
+           }
+           for(auto it: st3){
+               mpp[it]++;
+           }
+          
+         for(auto it: mpp){
+             if(it.second==3){
+                 ans.push_back(it.first);
+             }
+         }
+          
+           sort(ans.begin(), ans.end());
+
+
+
+
+
+
+        
+         Solution 3 using three pointers
+        set<int> st;
+        
+        int i=0, j=0, k=0;
+        while(i<n1 && j<n2 && k<n3){
+            if(A[i]==B[j] && B[j]==C[k]){
+                st.insert(A[i]);
+                i++;
+                j++;
+                k++;
+            }
+            else if(A[i]>B[j]){
+                j++;
+            }
+            else if(B[j]>C[k]){
+                k++;
+            }
+            else{
+                i++;
+            }
+            
+        }
+            
+        for(auto it: st){
+            ans.push_back(it);
+        }
+            
+            
+            return ans;
+            
+        }
