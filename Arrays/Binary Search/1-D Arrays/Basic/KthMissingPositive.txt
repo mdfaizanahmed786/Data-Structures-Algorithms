@@ -1,0 +1,65 @@
+
+Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
+
+Return the kth positive integer that is missing from this array.
+
+ 
+
+Example 1:
+
+Input: arr = [2,3,4,7,11], k = 5
+Output: 9
+Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
+
+
+
+class Solution {
+public:
+// Here is the intuiton, the numbers less than or equal to k will incrase the k value or else the loop will break.
+    int findKthPositive(vector<int>& arr, int k) {
+        // for(int i=0; i<arr.size(); i++){
+        //     if(arr[i]<=k){
+        //         k++;
+        //     }
+        //     else{
+        //         break;
+        //     }
+        // }
+
+        // return k;
+
+
+        // applying binary search for above solution
+        // Algorithm:
+    //    1. First calculate all missings for individual elements in array
+    //    2. Then apply binary search, if missing is less than k, increment low pointer else increment high pointer
+    //    3. At last, high and low will change polarity, high will be pointing to the low position and same polarity with high pointer
+    //    4. Now just return low+k? why? 
+    //    Derivation:
+
+    //    arr[high]+more, what is more?
+    //    more=k-missing
+    //    missing=arr[high]-high-1
+
+    //    substituing all values:
+    //    arr[high]+k-arr[high]+high+1
+    //    at last: high+1+k or low+k
+
+
+
+    int low=0, high=arr.size()-1;
+    while(low<=high){
+        long long mid=(low+high)/2;
+        long long missing=arr[mid]-(mid+1);
+        if(missing<k){
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+
+    return low+k;
+
+    }
+};
