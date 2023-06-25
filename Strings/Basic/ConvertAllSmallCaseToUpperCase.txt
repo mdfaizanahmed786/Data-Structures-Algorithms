@@ -1,0 +1,51 @@
+
+Convert the given string to uppercase without using any predefined function.
+
+
+Example 1:
+
+Input:
+S = "geeks"
+Output: GEEKS
+
+Explanation: 
+'a' in ASCII = 97 and 'A' = 65, which we get by subtracting 32 from 97.
+
+
+or inputcharacter-'a'+'A'
+
+
+
+
+string to_upper(string str){
+    //code
+   
+    
+    for(int i=0; i<str.size(); i++){
+    
+        str[i]=(char)(str[i]-32);
+    }
+    
+    return str;
+    
+}
+
+
+Opposite conversion:
+
+string str="GeeKs";
+string ans;
+
+for(int i=0; i<str.size(); i++){
+    if(str[i]-'a'>=0 and  str[i]-'a'<=25){
+        ans=ans+(char)(str[i]-32);
+    }
+    else{
+        ans=ans+(char)(str[i]+32);
+    }
+}
+
+cout<<ans;
+
+
+we can even check the range, if it is in the range of a-z then convert it to upper case else convert it to lower case.
