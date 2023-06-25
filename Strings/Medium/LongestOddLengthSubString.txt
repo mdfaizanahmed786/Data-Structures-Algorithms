@@ -1,0 +1,59 @@
+You are given a string num, representing a large integer. Return the largest-valued odd integer (as a string) that is a non-empty substring of num, or an empty string "" if no odd integer exists.
+
+A substring is a contiguous sequence of characters within a string.
+
+ 
+
+Example 1:
+
+Input: num = "52"
+Output: "5"
+Explanation: The only non-empty substrings are "5", "2", and "52". "5" is the only odd number.
+
+
+class Solution {
+public:
+    string largestOddNumber(string num) {
+        // reverse(num.begin(), num.end());
+        // long long nums=stoi(num);
+        // string ans="";
+
+        // long long result=0;
+        // int maxOdd=-1;
+
+        // while(nums!=0){
+        //     int lastDigit=nums%10;
+        //     if(lastDigit%2!=0){
+        //       maxOdd=max(lastDigit, maxOdd);
+
+        //     }
+        //     result=result*10+lastDigit;
+        //      if(result%2!=0){
+           
+        //      if(result>maxOdd){
+        //          result=maxOdd;
+        //      }
+
+        //      }
+        //     nums/=10;
+        // }
+
+
+
+        // return maxOdd!=-1 ? to_string(maxOdd) : "";
+
+
+        
+//   TC: O(N) SC:O(1)
+        string ans;
+
+        for(int i=num.size()-1; i>=0; i--){
+            if((num[i]-'0')%2!=0){
+                ans=num.substr(0, i+1);
+                break;
+            }
+        }
+
+         return ans;
+}
+};

@@ -6,3 +6,42 @@ Example 1:
 
 Input: s = "aba"
 Output: true
+
+
+class Solution {
+    public:
+    bool checkPalindrome(string s, int start, int end){
+        while(start<=end){
+            if(s[start]!=s[end]){
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+public:
+    bool validPalindrome(string s) {
+
+    //   There are three cases:
+    // 1. The string given is already a palindrome
+    // 2. The string given can be palindrome after one removal (checking in return itelf, if after one removal we are getting a palindrome return ture or else return false, no need to check for second removal)
+    // 3. The string given can be palindrome after more than one removal
+       int low=0, high=s.size()-1;
+       while(low<=high){
+           if(s[low]!=s[high]){
+            
+           return checkPalindrome(s, low+1, high) || checkPalindrome(s, low, high-1);
+               }
+
+           low++;
+           high--;
+        
+           
+       }
+        
+
+        return true;
+    }
+};
