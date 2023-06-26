@@ -1,0 +1,53 @@
+Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
+
+Return the sorted string. If there are multiple answers, return any of them.
+
+ 
+
+Example 1:
+
+Input: s = "tree"
+Output: "eert"
+Explanation: 'e' appears twice while 'r' and 't' both appear once.
+So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+
+
+
+
+
+
+class Solution {
+public:
+    string frequencySort(string s) {
+        // using bucket sort technique which is also useful for top k elements and top k words
+        unordered_map<char, int> mpp;
+        string ans;
+        // declaring a bucket size of n+1
+        vector<string> bucket(s.size()+1, "");
+
+        // storing the element frequency count in hashmap
+        for(int i=0; i<s.size(); i++){
+            mpp[s[i]]++;
+        }
+
+// now, taking those frequency as indices of array and appending items to it.
+        for(auto it: mpp){
+            // counting no of characters
+            int n=it.second;
+            char c=it.first;
+            bucket[n].append(n, c);
+            
+            }
+    
+    // traversing from backwards because to get the maximum frequency count.
+
+    for(int i=s.size(); i>0; i--){
+        if(!bucket[i].empty()){
+            ans.append(bucket[i]);
+        }
+    }
+
+    return ans;
+
+    }
+};
