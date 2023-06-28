@@ -1,0 +1,62 @@
+Given a string s, rearrange the characters of s so that any two adjacent characters are not the same.
+
+Return any possible rearrangement of s or return "" if not possible.
+
+ 
+
+Example 1:
+
+Input: s = "aab"
+Output: "aba"
+
+
+string reorganizeString(string s) {
+        // creating a hash array
+        int hash[26]={0};
+        for(int i=0; i<s.size(); i++){
+            hash[s[i]-'a']++;
+        }
+
+        int maxFrequency=INT_MIN;
+        char char_max_freq;
+        for(int i=0; i<26; i++){
+            // checking for the characters that have maximum frequency
+            if(hash[i]>maxFrequency){
+                maxFrequency=hash[i];
+                char_max_freq=i+'a';
+            }
+        }
+
+        int index=0;
+        while(maxFrequency>0 && index<s.size()){
+            s[index]=char_max_freq;
+            hash[char_max_freq-'a']--;
+            maxFrequency--;
+            index+=2;
+        }
+
+        if(maxFrequency!=0){
+            return "";
+        }
+
+        for(int i=0; i<26; i++){
+            while(hash[i]>0){
+                index=index>=s.size() ? 1 : index;
+                s[index]=i+'a';
+                hash[i]--;
+                index+=2;
+            }
+        }
+
+        return s;
+
+}
+
+
+Algorithm:
+1. Create a hash array to store the frequency of each character.
+2. Find the character with the maximum frequency.
+3. Place the character with the maximum frequency at the even indices.
+4. If the maximum frequency is greater than half the size of the string, then return an empty string.
+5. Place the remaining characters at the odd indices.
+6. Return the string.
