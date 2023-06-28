@@ -1,0 +1,78 @@
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+ 
+
+Example 1:
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+
+
+
+
+class Solution {
+public:
+  vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    vector<vector<string>> ans;
+    unordered_map<string, vector<string>> mpp;
+
+    for (int i = 0; i < strs.size(); i++) {
+        string sortedStr = strs[i];
+        sort(sortedStr.begin(), sortedStr.end());
+
+        mpp[sortedStr].push_back(strs[i]);
+    }
+
+    for(auto it: mpp){
+        ans.push_back(it.second);
+    }
+
+    return ans;
+}
+
+};
+
+TC: O(NKlogK+ logM) where M is size of map.
+SC: O(NK)+O(M) where M is size of map.
+ what is k? k is the length of the longest string in the array.
+
+
+Little optimized way:
+class Solution {
+    public:
+    array<int, 256> hash(string s){
+        array<int, 256> hashArray={0};
+        for(int i=0; i<s.size(); i++){
+            hashArray[s[i]]++;
+        }
+
+        return hashArray;
+    }
+public:
+  vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    vector<vector<string>> ans;
+    map<array<int, 256>, vector<string>> mpp;
+
+    for (int i = 0; i < strs.size(); i++) {
+        string str = strs[i];
+        // sort(sortedStr.begin(), sortedStr.end());
+
+        mpp[hash(str)].push_back(strs[i]);
+    }
+
+    for(auto it: mpp){
+        ans.push_back(it.second);
+    }
+
+    return ans;
+}
+
+};
+
+Just we are using hasharrays to remove complexity of sorting.
+
+TC: O(NK+logM)
+SC: O(NK+M) what is k? k is the length of the longest string in the array.
