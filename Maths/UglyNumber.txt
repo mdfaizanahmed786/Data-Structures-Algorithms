@@ -1,0 +1,49 @@
+An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
+
+Given an integer n, return true if n is an ugly number.
+
+ 
+
+Example 1:
+
+Input: n = 6
+Output: true
+Explanation: 6 = 2 × 3
+Example 2:
+
+Input: n = 1
+Output: true
+Explanation: 1 has no prime factors, therefore all of its prime factors are limited to 2, 3, and 5.
+
+
+class Solution {
+public:
+    bool isUgly(int n) {
+        if(n==1) return 1;
+        if(n<=0) return 0;
+        vector<int> primes={2,3,5};
+        for(int i=0; i<primes.size(); i++){
+            while(n%primes[i]==0){
+                n=n/primes[i];
+            }
+            if(n==1) return true;
+        }
+
+        return false;
+    }
+};
+
+
+Algorithm:
+1. If the number is less than or equal to 0, it is not ugly.
+2. If the number is 1, it is ugly.
+3. If the number is divisible by 2, divide it by 2 and repeat the process.
+4. If the number is divisible by 3, divide it by 3 and repeat the process.
+5. If the number is divisible by 5, divide it by 5 and repeat the process.
+6. If the number is not divisible by 2, 3, or 5, it is not ugly.
+7. If the number is divisible by 2, 3, or 5, repeat the process until the number is 1, which means it is ugly.
+
+
+
+Dry run:
+N=20: 20/2=10, 10/2=5, 5/5=1, ugly
