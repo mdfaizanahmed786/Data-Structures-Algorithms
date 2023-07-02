@@ -1,0 +1,40 @@
+Given a string check if it is Pangram or not. A pangram is a sentence containing every letter in the English Alphabet (either lowercase or uppercase or both). For example, we say the letter A is present in the string if either 'a' is present or 'A' is present.
+
+Example 1:
+
+Input:
+S = Bawds jog, flick quartz, vex nymph
+Output: 1
+Explanation: In the given input, there
+are all the letters of the English
+alphabet. Hence, the output is 1.
+
+class Solution
+{
+  public:
+    //Function to check if a string is Pangram or not.
+    bool checkPangram (string &str) {
+    set<char> strSet;
+    string alpha="abcdefghijklmnopqrstuvwxyz";
+
+    for (char c : str) {
+        if(isalpha(c)){
+        strSet.insert(c);
+            
+        }
+    }
+    
+        for(int i=0; i<alpha.size(); i++){
+         
+            if(!strSet.count(alpha[i]) && !strSet.count(alpha[i]-'a'+'A')){
+                return false;
+            }
+                
+            
+        }
+        
+        
+        return true;
+    }
+
+}
