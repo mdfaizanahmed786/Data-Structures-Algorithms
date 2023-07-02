@@ -1,0 +1,46 @@
+Given an n-digit large number in form of string, check whether it is divisible by 7 or not. Print 1 if divisible by 7, otherwise 0.
+
+
+Example 1:
+
+Input: num = "8955795758"
+Output: 1
+Explanation: 8955795758 is divisible
+by 7.
+
+
+class Solution{
+  public:
+    int isdivisible7(string num){
+        //complete the function here
+    int n=num.size();
+    int first = (num[n-1]-'0') * 2;
+    int sum=0;
+      for(int i=0; i<num.size()-1; i++){
+          
+            int dig = num[i]-'0';
+            sum=sum*10+dig;
+          
+            sum=sum%7;
+          
+      }
+      
+    //   cout<<sum<<endl;
+      
+      int diff=sum-first;
+ 
+      
+      if(diff%7==0){
+          return 1;
+      }
+      
+        
+       
+  
+       return 0;
+   
+    }
+};
+
+TC: O(n)
+SC: O(1)
