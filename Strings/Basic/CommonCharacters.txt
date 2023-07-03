@@ -1,0 +1,39 @@
+Given a string array words, return an array of all characters that show up in all strings within the words (including duplicates). You may return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: words = ["bella","label","roller"]
+Output: ["e","l","l"]
+
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& words) {
+        vector<int> commonChar(26, INT_MAX);
+        for(int i=0; i<words.size(); i++){
+            vector<int> count(26, 0);
+            for(int j=0; j<words[i].size(); j++){
+                string word=words[i];
+                count[word[j]-'a']++;
+            }
+ // Here it will update INT_MAX and set 0 if they are not common and if they don't appear.
+            for(int i=0; i<commonChar.size(); i++){
+               commonChar[i]=min(commonChar[i], count[i]);
+            }
+
+        }
+
+        vector<string> result;
+
+        for(int i=0; i<commonChar.size(); i++){
+            int count=commonChar[i];
+            while(count>0){
+                result.push_back(string(1, i+'a'));
+                count--;
+            }
+        }
+
+        return result;
+    }
+};
