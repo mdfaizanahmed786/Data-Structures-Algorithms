@@ -15,7 +15,7 @@
 
  Different approach in case of this one. O(min(n, m))+O(nlogn)+O(mlogm) (in this it is automatically merged and sorted)
 
- https:practice.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1
+ https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1
  SC: O(1) no extra space we are using
          int i=m-1, j=0;
          while(i>=0 && j<n){
