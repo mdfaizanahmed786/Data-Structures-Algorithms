@@ -141,7 +141,7 @@ void deleteLastNode(Node *&head){
   }
 // if only head one exist
    if(head->next==nullptr){
-        return nullptr;
+        return;
     }
 
   Node *temp=head;
