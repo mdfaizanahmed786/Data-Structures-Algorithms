@@ -5,6 +5,7 @@ class Node{
   public:
   int data;
   Node *next;
+  
   Node(){
     this->data=0;
     this->next=nullptr;
@@ -13,12 +14,30 @@ class Node{
     this->data=data;
     this->next=nullptr;
   }
+
 };
 
 class Stack{
   public:
-  int data;
   Node *head=nullptr;
+  int size;
+  Stack(int size){
+    this->size=size;
+  }
+
+  int findLengthOfLinkedList(Node *head){
+    Node *temp=head;
+    int length=0;
+    while(temp){
+      temp=temp->next;
+      length++;
+    }
+    return length;
+  }
+
+  int getSize(){
+    return findLengthOfLinkedList(head);
+  }
  
 
   void push(int data) {
@@ -27,6 +46,11 @@ class Stack{
         head = newNode;
         return;
     } else {
+      if(findLengthOfLinkedList(head)==size){
+        cout<<"Stack is full"<<endl;
+        return;
+      }
+      
         Node *temp = head;
         while (temp->next) {
             temp = temp->next;
@@ -80,18 +104,24 @@ void pop() {
 
 int main() {
 
-  Stack s;
+  Stack s(5);
   s.push(5);
   s.push(5);
   s.push(7);
-  cout<<s.getTop()<<endl;
-  s.pop();
-  s.pop();
-  s.pop();
+  s.push(10);
+  s.push(11);
 
-  cout<<s.getTop()<<endl;
 
-  cout<<s.isEmpty()<<endl;
+
+//   cout<<s.getTop()<<endl;
+//   cout<<s.getSize()<<endl;
+
+//   cout<<s.isEmpty()<<endl;
+
+while(!s.isEmpty()){
+  cout<<s.getTop()<<" ";
+  s.pop();
+}
 
 
   return 0;
