@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-// In order traversal
+// Pre order traversal
 
 class Node {
     public:
@@ -35,19 +35,19 @@ Node * buildTree(){
 
 
 
-// LNR pattern
-void inorderTraversal(Node *root){
+// NLR pattern
+void preOrder(Node *root){
   if(root==nullptr){
     return;
   }
-  inorderTraversal(root->left);
   cout<<root->data<<" ";
-  inorderTraversal(root->right);
+  preOrder(root->left);
+  preOrder(root->right);
 }
 
 int main() {
   Node *root=buildTree();
 
-  inorderTraversal(root);
+  preOrder(root);
 
 }
