@@ -14,6 +14,7 @@ int i=0;
     // 1. Push everything from stack1 to stack2
     // 2. insert x or num to stack 1
     // 3. Again push every number from stack2 to stack1
+    // 4. TC: O(N) SC: O(2N)
     int x;
     cin>>x;
     while(!st1.empty()){
